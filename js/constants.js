@@ -2,6 +2,7 @@ const FACULTY_LAYER = 0;
 const MODULE_LAYER = 1;
 const LESSER_MODULE_LAYER = 2;
 const LECTURE_LAYER = 3;
+const NOT_FOUND_LAYER = 4;
 
 const FACULTY_LAYER_LI_CLASS_LIST = ["cd-accordion__item", "cd-accordion__item--has-children"];
 const FACULTY_LAYER_INPUT_CLASS_LIST = ["cd-accordion__input"];
