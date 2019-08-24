@@ -43,6 +43,16 @@ function getLectureFromLesserModule(module) {
         var lectures = module.Ueberschrift.Veranstaltung;
         for (var i in lectures) {
             currentLectureName = lectures[i].VName;
+
+            // The following if-clause is a dirty fix for the inconsistent json-data-structure used. Some modules, which contain
+            // only one lecture are structured differently from modules that contain two or more lectures. This is a workaround,
+            // but ideally data-structure should be adjusted and made more consistent
+            if(currentLectureName === undefined) {
+                currentLectureName = module.Ueberschrift.Veranstaltung.VName;
+                createAccordionEntry(currentLectureName, LECTURE_LAYER, true);
+                break;
+            }
+
             createAccordionEntry(currentLectureName, LECTURE_LAYER, true);
         }
     } else {
