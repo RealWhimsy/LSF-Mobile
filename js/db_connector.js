@@ -32,7 +32,6 @@ function getLesserModuleFromModule(module) {
     var lesserModule = module.Vorlesung;
     for (var i in lesserModule) {
         currentLesserModuleName = lesserModule[i].Ueberschrift.UeBez;
-        console.log(currentLesserModuleName);
         createAccordionEntry(currentLesserModuleName, LESSER_MODULE_LAYER);
         getLectureFromLesserModule(lesserModule[i]);
     }
@@ -40,16 +39,17 @@ function getLesserModuleFromModule(module) {
 }
 
 function getLectureFromLesserModule(module) {
-    if (module.Ueberschrift.hasOwnProperty("Veranstaltung")) {
+    if (Object.keys(module.Ueberschrift).length >= 2) {
         var lectures = module.Ueberschrift.Veranstaltung;
         for (var i in lectures) {
-            if (lectures[i].hasOwnProperty("VName")) {
-                currentLectureName = lectures[i].VName;
-                createAccordionEntry(currentLectureName, LECTURE_LAYER);
-                createAccordionEntry(currentFacultyName, currentModuleName, currentLesserModuleName, currentLectureName);
-            }
+            currentLectureName = lectures[i].VName;
+            createAccordionEntry(currentLectureName, LECTURE_LAYER, true);
         }
+    } else {
+        createAccordionEntry("No lectures here!", LECTURE_LAYER, false);
     }
+
+
 }
 
 
