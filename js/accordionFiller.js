@@ -3,6 +3,8 @@ var currentFaculty, currentModule, currentLesserModule;
 var accordionSection = document.getElementById('accordion-section');
 var accordionList = document.getElementById('accordion-list');
 
+var currentID = 0;
+
 function createAccordionEntry(name, layer) {
     switch(layer) {
         case FACULTY_LAYER:
@@ -11,11 +13,11 @@ function createAccordionEntry(name, layer) {
 
             var facInput = document.createElement('input');
             addStylesToElement(facInput, FACULTY_LAYER_INPUT_CLASS_LIST);
-            setInputAttributes(facInput, name);
+            setInputAttributes(facInput);
 
             var facLabel = document.createElement('label');
             addStylesToElement(facLabel, FACULTY_LAYER_LABEL_CLASS_LIST);
-            setLabelAttributes(facLabel, name);
+            setLabelAttributes(facLabel);
 
             var facSpan = document.createElement('span');
             facSpan.innerHTML = name;
@@ -37,11 +39,11 @@ function createAccordionEntry(name, layer) {
 
             var modInput = document.createElement('input');
             addStylesToElement(modInput, MODULE_LAYER_INPUT_CLASS_LIST);
-            setInputAttributes(modInput, name);
+            setInputAttributes(modInput);
 
             var modLabel = document.createElement('label');
             addStylesToElement(modLabel, MODULE_LAYER_LABEL_CLASS_LIST);
-            setLabelAttributes(modLabel, name);
+            setLabelAttributes(modLabel);
 
             var modSpan = document.createElement('span');
             modSpan.innerHTML = name;
@@ -64,11 +66,11 @@ function createAccordionEntry(name, layer) {
 
             var lesInput = document.createElement('input');
             addStylesToElement(lesInput, LESSER_LAYER_INPUT_CLASS_LIST);
-            setInputAttributes(lesInput, name);
+            setInputAttributes(lesInput);
 
             var lesLabel = document.createElement('label')
             addStylesToElement(lesLabel, LESSER_LAYER_LABEL_CLASS_LIST);
-            setLabelAttributes(lesLabel, name);
+            setLabelAttributes(lesLabel);
 
             var lesSpan = document.createElement('span');
             lesSpan.innerHTML = name;
@@ -113,12 +115,13 @@ function addStylesToElement(element, styles){
     }
 }
 
-function setInputAttributes(input, name) {
+function setInputAttributes(input) {
     input.setAttribute("type", "checkbox");
-    input.setAttribute("id", name);
+    input.setAttribute("id", currentID);
 }
 
-function setLabelAttributes(label, name) {
-    label.setAttribute("for", name);
+function setLabelAttributes(label) {
+    label.setAttribute("for", currentID);
+    currentID++;
 }
 
