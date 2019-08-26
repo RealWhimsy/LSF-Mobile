@@ -61,7 +61,6 @@ function getLectureFromLesserModule(module) {
         }
     } else {
         createAccordionEntry("No lectures here!", LECTURE_LAYER, currentLectureId, false);
-        currentLectureId++;
     }
 
 }

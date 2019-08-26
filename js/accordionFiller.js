@@ -2,6 +2,9 @@
 var currentFaculty, currentModule, currentLesserModule;
 var accordionSection = document.getElementById('accordion-section');
 var accordionList = document.getElementById('accordion-list');
+var domParent = document.getElementById("body");
+
+var lectureDetailOverlay, lectureDetailList, lectureDay, lectureStartTime, lectureEndTime, lectureLocation, lectureName, addToTimetableButton;
 
 var currentID = 0;
 
@@ -102,10 +105,10 @@ function createAccordionEntry(name, layer, lectureId, lectureFound) {
             lecLi.appendChild(lecA);
             lecA.appendChild(lecSpan);
             lecSpan.onclick = function(){showLectureDetails(lectureId)};
-            console.log("hi");
 
             if(!lectureFound){
                 lecSpan.style.setProperty("color", "#9a9da1", "important");
+                lecSpan.onclick = null;
             }
 
             currentLesserModule.appendChild(lecUl);
@@ -114,7 +117,63 @@ function createAccordionEntry(name, layer, lectureId, lectureFound) {
 }
 
 function showLectureDetails(lectureId){
-    console.log(lectureId);
+    lectureDetailOverlay = document.createElement("div");
+    lectureDetailOverlay.classList.add("lecture-overlay");
+    var currentLectureDetails = lectureList[lectureId];
+
+    createLectureDetailElements();
+    fillLectureDetailElements(currentLectureDetails);
+    appendChildrenToOverlay();
+
+    lectureDetailOverlay.onclick = function(){hideOverlay()};
+    domParent.appendChild(lectureDetailOverlay);
+}
+
+function hideOverlay(){
+    domParent.removeChild(lectureDetailOverlay);
+}
+
+function appendChildrenToOverlay(){
+    var containerDiv = document.createElement("div");
+    containerDiv.classList.add("overlay-container");
+    initAddToTimetableButton();
+
+    containerDiv.appendChild(lectureName);
+    containerDiv.appendChild(lectureDay);
+    containerDiv.appendChild(lectureStartTime);
+    containerDiv.appendChild(lectureEndTime);
+    containerDiv.appendChild(lectureLocation);
+    containerDiv.appendChild(addToTimetableButton);
+
+    lectureDetailOverlay.appendChild(containerDiv);
+}
+
+function initAddToTimetableButton(){
+    addToTimetableButton = document.createElement('button');
+    addToTimetableButton.onclick = function(){addLectureToTimetable(lectureName, lectureDay, lectureStartTime, lectureEndTime, lectureLocation)};
+    addToTimetableButton.innerHTML = "Add to timetable";
+}
+
+
+function fillLectureDetailElements(details) {
+    lectureName.innerHTML = "Lecture: " + details.LECTURE_NAME_KEY;
+    lectureStartTime.innerHTML = "Start Time: " + details.LECTURE_START_TIME_KEY;
+    lectureEndTime.innerHTML = "End Time: " + details.LECTURE_END_TIME_KEY;
+    lectureLocation.innerHTML = "Location: " + details.LECTURE_LOCATION_KEY;
+    lectureDay.innerHTML = "Weekday: " + details.LECTURE_DAY_KEY;
+}
+
+function createLectureDetailElements() {
+    lectureDetailList = document.createElement("div");
+    lectureName = document.createElement("p");
+    lectureStartTime = document.createElement("p");
+    lectureEndTime = document.createElement("p");
+    lectureLocation = document.createElement("p");
+    lectureDay = document.createElement("p");
+}
+
+function addLectureToTimetable(name, day, startTime, endTime, location) {
+
 }
 
 
