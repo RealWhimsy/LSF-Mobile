@@ -1,7 +1,9 @@
 var database = firebase.database();
 var dbRef = database.ref();
+var lectureList = [];
+var currentLectureId = 0;
 
-var currentFacultyName, currentModuleName, currentLesserModuleName, currentLectureName;
+var currentFacultyName, currentModuleName, currentLesserModuleName, currentLectureName, lectureStartTime, lectureEndTime, lectureDay, lectureLocation;
 
 
 getFacultiesFromDb();
@@ -42,23 +44,49 @@ function getLectureFromLesserModule(module) {
     if (Object.keys(module.Ueberschrift).length >= 2) {
         var lectures = module.Ueberschrift.Veranstaltung;
         for (var i in lectures) {
-            currentLectureName = lectures[i].VName;
-
+            getLectureDetails(lectures[i]);
+            addLectureToList();
             // The following if-clause is a dirty fix for the inconsistent json-data-structure used. Some modules, which contain
             // only one lecture are structured differently from modules that contain two or more lectures. This is a workaround,
             // but ideally data-structure should be adjusted and made more consistent
             if(currentLectureName === undefined) {
                 currentLectureName = module.Ueberschrift.Veranstaltung.VName;
-                createAccordionEntry(currentLectureName, LECTURE_LAYER, true);
+                createAccordionEntry(currentLectureName, LECTURE_LAYER, currentLectureId, true);
+                currentLectureId++;
                 break;
             }
 
-            createAccordionEntry(currentLectureName, LECTURE_LAYER, true);
+            createAccordionEntry(currentLectureName, LECTURE_LAYER, currentLectureId, true);
+            currentLectureId++;
         }
     } else {
-        createAccordionEntry("No lectures here!", LECTURE_LAYER, false);
+        createAccordionEntry("No lectures here!", LECTURE_LAYER, currentLectureId, false);
+        currentLectureId++;
     }
 
+}
+
+function addLectureToList(){
+    lectureList.push({
+        LECTURE_ID_KEY : currentLectureId,
+        LECTURE_NAME_KEY : currentLectureName,
+        LECTURE_START_TIME_KEY : lectureStartTime,
+        LECTURE_END_TIME_KEY : lectureEndTime,
+        LECTURE_LOCATION_KEY : lectureLocation,
+        LECTURE_DAY_KEY : lectureDay,
+    });
+}
+
+function getLectureDetails(lecture){
+    currentLectureName = lecture.VName;
+    try {
+        lectureStartTime = lecture.VZeit.VZBeginn;
+        lectureEndTime = lecture.VZeit.VZEnde;
+        lectureDay = lecture.VZeit.VZWoTagKurz;
+        lectureLocation = lecture.VZeit.VZRaum.VZRaumName;
+    } catch (e) {
+        lectureStartTime, lectureEndTime, lectureDay, lectureLocation = null;
+    }
 
 }
 

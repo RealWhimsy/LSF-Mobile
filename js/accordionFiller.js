@@ -5,7 +5,7 @@ var accordionList = document.getElementById('accordion-list');
 
 var currentID = 0;
 
-function createAccordionEntry(name, layer, lectureFound) {
+function createAccordionEntry(name, layer, lectureId, lectureFound) {
     switch(layer) {
         case FACULTY_LAYER:
             var facLi = document.createElement('li');
@@ -101,6 +101,8 @@ function createAccordionEntry(name, layer, lectureFound) {
             lecUl.appendChild(lecLi);
             lecLi.appendChild(lecA);
             lecA.appendChild(lecSpan);
+            lecSpan.onclick = function(){showLectureDetails(lectureId)};
+            console.log("hi");
 
             if(!lectureFound){
                 lecSpan.style.setProperty("color", "#9a9da1", "important");
@@ -111,6 +113,9 @@ function createAccordionEntry(name, layer, lectureFound) {
     }
 }
 
+function showLectureDetails(lectureId){
+    console.log(lectureId);
+}
 
 
 function addStylesToElement(element, styles){
