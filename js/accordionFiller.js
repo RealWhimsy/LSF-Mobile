@@ -153,6 +153,8 @@ function appendChildrenToOverlay(){
 function initAddToTimetableButton(){
     addToTimetableButton = document.createElement('button');
     addToTimetableButton.onclick = function(){addLectureToTimetable(detailName, detailDay, detailStartTime, detailEndTime, detailLocation)};
+    addToTimetableButton.classList.add("timetable-button");
+    addToTimetableButton.style.border = "1px solid black";
     addToTimetableButton.innerHTML = "Add to timetable";
 }
 

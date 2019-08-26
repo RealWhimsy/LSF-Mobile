@@ -27,18 +27,23 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer; /* Add a pointer on hover */
+
 }
 
 .overlay-container {
-    color : whitesmoke;
+    margin: auto;
+    width: 90%;
+    color: whitesmoke;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: 0 -50% 0 0;
     transform: translate(-50%, -50%);
+    background-color: rgba(76, 80, 87, 0.8);
+    border:1px solid black;
+    padding: 16px;
 }
 
 .dropdown {
