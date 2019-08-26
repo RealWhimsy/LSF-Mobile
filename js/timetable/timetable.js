@@ -706,9 +706,6 @@ jQuery(document).ready(function(){
 
 
 function onTimetableChanged(){
-
-	console.log("timetable changed");
-
 	jQuery('.tiva-timetable').each(function(index) {
 		// Set id for timetable
 		jQuery(this).attr('id', 'timetable-' + (index + 1));
