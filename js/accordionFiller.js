@@ -6,6 +6,8 @@ var domParent = document.getElementById("body");
 
 var lectureDetailOverlay, lectureDetailList, lectureDay, lectureStartTime, lectureEndTime, lectureLocation, lectureName, addToTimetableButton;
 
+var detailName, detailStartTime, detailEndTime, detailLocation, detailDay;
+
 var currentID = 0;
 
 function createAccordionEntry(name, layer, lectureId, lectureFound) {
@@ -150,17 +152,26 @@ function appendChildrenToOverlay(){
 
 function initAddToTimetableButton(){
     addToTimetableButton = document.createElement('button');
-    addToTimetableButton.onclick = function(){addLectureToTimetable(lectureName, lectureDay, lectureStartTime, lectureEndTime, lectureLocation)};
+    addToTimetableButton.onclick = function(){addLectureToTimetable(detailName, detailDay, detailStartTime, detailEndTime, detailLocation)};
     addToTimetableButton.innerHTML = "Add to timetable";
 }
 
 
 function fillLectureDetailElements(details) {
+    fillDetailVariables(details);
     lectureName.innerHTML = "Lecture: " + details.LECTURE_NAME_KEY;
     lectureStartTime.innerHTML = "Start Time: " + details.LECTURE_START_TIME_KEY;
     lectureEndTime.innerHTML = "End Time: " + details.LECTURE_END_TIME_KEY;
     lectureLocation.innerHTML = "Location: " + details.LECTURE_LOCATION_KEY;
     lectureDay.innerHTML = "Weekday: " + details.LECTURE_DAY_KEY;
+}
+
+function fillDetailVariables(details){
+    detailDay = details.LECTURE_DAY_KEY;
+    detailName = details.LECTURE_NAME_KEY;
+    detailStartTime = details.LECTURE_START_TIME_KEY;
+    detailEndTime = details.LECTURE_END_TIME_KEY;
+    detailLocation = details.LECTURE_LOCATION_KEY;
 }
 
 function createLectureDetailElements() {
@@ -170,10 +181,6 @@ function createLectureDetailElements() {
     lectureEndTime = document.createElement("p");
     lectureLocation = document.createElement("p");
     lectureDay = document.createElement("p");
-}
-
-function addLectureToTimetable(name, day, startTime, endTime, location) {
-
 }
 
 
