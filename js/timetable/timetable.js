@@ -349,7 +349,16 @@ function timetableWeek(el, tiva_timetables, firstDayWeek) {
 																+ timetable_image
 																+ '<div class="timetable-time color-' + timetables[t].color + '">' + timetables[t].start_time + timetable_end_time + '</div>'
 																+ '<div class="timetable-desc">' + timetables[t].description + '</div>'
-																+ '<button class="timetable-remove-button" id="' + timetables[t].name + '" onclick="deleteEntry(this)">Delete from Timetable</button>'
+																+ '<button class="timetable-popup-button" id="' + timetables[t].name + '" onclick="deleteEntry(this)">Delete from Timetable</button>'
+																+ '<div class="dropdown">'
+																	+ '<button class="timetable-popup-button" onclick="toggleDropdown()">Change Color</button>'
+																	+ '<div id="myDropdown" class="dropdown-content">'
+																		+ '<button class="dropdown-selector dd-button-1" id="' + timetables[t].name + '" onclick="changeEntryColor(this, 1)">Turqouise</button>'
+																		+ '<button class="dropdown-selector dd-button-2" id="' + timetables[t].name + '" onclick="changeEntryColor(this, 2)">Blue</button>'
+																		+ '<button class="dropdown-selector dd-button-3" id="' + timetables[t].name + '" onclick="changeEntryColor(this, 3)">Yellow</button>'
+																		+ '<button class="dropdown-selector dd-button-4" id="' + timetables[t].name + '" onclick="changeEntryColor(this, 4)">Orange</button>'
+																	+ '</div>'
+																+ '</div>'
 															+ '</div>'
 														+ '</div>'
 													+ '</div>';
