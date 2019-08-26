@@ -1,3 +1,10 @@
+const LECTURE_NAME_KEY = "LECTURE_NAME";
+const LECTURE_START_TIME_KEY = "LECTURE_START_TIME";
+const LECTURE_END_TIME_KEY = "LECTURE_END_TIME";
+const LECTURE_DAY_KEY = "LECTURE_DAY";
+const LECTURE_LOCATION_KEY = "LECTURE_LOCATION";
+const LECTURE_ID_KEY = "LECTURE_ID";
+
 const FACULTY_LAYER = 0;
 const MODULE_LAYER = 1;
 const LESSER_MODULE_LAYER = 2;
@@ -21,3 +28,10 @@ const LESSER_LAYER_LABEL_CLASS_LIST = ["cd-accordion__label", "cd-accordion__lab
 const LECTURE_LAYER_UL_CLASS_LIST = ["cd-accordion__sub", "cd-accordion__sub--l3"];
 const LECTURE_LAYER_LI_CLASS_LIST = ["cd-accordion__item"];
 const LECTURE_LAYER_A_CLASS_LIST = ["cd-accordion__label", "cd-accordion__label--icon-img"];
+
+const COLOR_BLUE = "#6a96cc";
+const COLOR_TURQUOISE = "#62b3b3";
+const COLOR_ORANGE = "#e58d6d";
+const COLOR_YELLOW = "#f3da6c";
+
+
