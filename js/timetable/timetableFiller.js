@@ -35,3 +35,13 @@ function convertDay(day) {
             return "monday";
     }
 }
+
+function deleteEntry(content) {
+    console.log(content);
+    for (var i in timetableMaster.items) {
+        if (timetableMaster.items[i].name === content.id){
+            timetableMaster.items.splice(i, 1);
+            onTimetableChanged();
+        }
+    }
+}

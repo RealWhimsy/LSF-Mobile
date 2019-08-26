@@ -349,6 +349,7 @@ function timetableWeek(el, tiva_timetables, firstDayWeek) {
 																+ timetable_image
 																+ '<div class="timetable-time color-' + timetables[t].color + '">' + timetables[t].start_time + timetable_end_time + '</div>'
 																+ '<div class="timetable-desc">' + timetables[t].description + '</div>'
+																+ '<button class="timetable-remove-button" id="' + timetables[t].name + '" onclick="deleteEntry(this)">Delete from Timetable</button>'
 															+ '</div>'
 														+ '</div>'
 													+ '</div>';
