@@ -1,6 +1,5 @@
 
 var currentFaculty, currentModule, currentLesserModule;
-var accordionSection = document.getElementById('accordion-section');
 var accordionList = document.getElementById('accordion-list');
 var domParent = document.getElementById("body");
 
@@ -10,6 +9,13 @@ var detailName, detailStartTime, detailEndTime, detailLocation, detailDay;
 
 var currentID = 0;
 
+// This method creates an entry in the accordion
+// The level of the accordion-entry depends on the 'layer' parameter, there is a total of 4 different levels
+// Each level requires different elements to be created
+// The 'name' parameter is the name of the lecture that is finally displayed in a <span> element in the accordion
+// The 'lectureId' parameter is needed to know what exact entry has been clicked, in case the user wants to add the lecture to his timetable
+// The 'lectureFound' parameter can be either true or false (default: true). If it is false, the onclick function gets disabled and
+// the font gets slightly greyed out to signal that no lectures are available in the chosen folder
 function createAccordionEntry(name, layer, lectureId, lectureFound) {
     switch(layer) {
         case FACULTY_LAYER:
@@ -118,6 +124,9 @@ function createAccordionEntry(name, layer, lectureId, lectureFound) {
     }
 }
 
+// This function triggers on clicking a lecture-level entry in the accordion
+// It creates a new div with overlay-properties and inserts it into the page
+// The Overlay-div contains several <p> elements which are filled with details (time, location) etc. of the clicked lecture
 function showLectureDetails(lectureId){
     lectureDetailOverlay = document.createElement("div");
     lectureDetailOverlay.classList.add("lecture-overlay");
@@ -158,7 +167,7 @@ function initAddToTimetableButton(){
     addToTimetableButton.innerHTML = "Add to timetable";
 }
 
-
+// Fills the <p> elements within the overlay-div with the text that should be displayed
 function fillLectureDetailElements(details) {
     fillDetailVariables(details);
     lectureName.innerHTML = "Lecture: " + details.LECTURE_NAME_KEY;
@@ -168,6 +177,7 @@ function fillLectureDetailElements(details) {
     lectureDay.innerHTML = "Weekday: " + details.LECTURE_DAY_KEY;
 }
 
+// Assigns values to detail-variables to make thema accessible from everywhere
 function fillDetailVariables(details){
     detailDay = details.LECTURE_DAY_KEY;
     detailName = details.LECTURE_NAME_KEY;
@@ -176,6 +186,7 @@ function fillDetailVariables(details){
     detailLocation = details.LECTURE_LOCATION_KEY;
 }
 
+// Creates the elements for the lecture detail overlay-div
 function createLectureDetailElements() {
     lectureDetailList = document.createElement("div");
     lectureName = document.createElement("p");
@@ -185,7 +196,7 @@ function createLectureDetailElements() {
     lectureDay = document.createElement("p");
 }
 
-
+// Helper method to quickly add an array of Strings to the class list of an element
 function addStylesToElement(element, styles){
     for(var i in styles){
         element.classList.add(styles[i]);

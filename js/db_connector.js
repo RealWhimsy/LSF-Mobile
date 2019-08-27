@@ -8,7 +8,9 @@ var currentFacultyName, currentModuleName, currentLesserModuleName, currentLectu
 
 getFacultiesFromDb();
 
-
+// This function gets all entries from the top-level of the database.
+// It starts cascading downwards towards the lower level for each entry. The downwards cascade continues in the other function for lower levels
+// These functions get the names of their respective level (which are later displayed as 'folder names') until the lowest level is reached (a single lecture entry)
 function getFacultiesFromDb() {
     dbRef.child("Studiengänge").once('value', function (snapshot) {
         var faculties = snapshot.val();
@@ -40,6 +42,10 @@ function getLesserModuleFromModule(module) {
 
 }
 
+// This function is responsible for the lowest-level entries, which are single lectures
+// If no lecture is found in the parent folder, it instead creates a dummy entry which says "No lectures here!"
+// The function that creates the entry for this level is different from the ones above, it takes an additional "currentLectureId" parameter
+// This parameter is later used in the onclick function to determine the exact lecture that was clicked
 function getLectureFromLesserModule(module) {
     if (Object.keys(module.Ueberschrift).length >= 2) {
         var lectures = module.Ueberschrift.Veranstaltung;
@@ -64,7 +70,8 @@ function getLectureFromLesserModule(module) {
     }
 
 }
-
+// This function adds a single lecture to an array of lectures
+// This can later be used to get details about lectures, by looking for their ID in the array
 function addLectureToList(){
     lectureList.push({
         LECTURE_ID_KEY : currentLectureId,
@@ -78,6 +85,7 @@ function addLectureToList(){
 
 function getLectureDetails(lecture){
     currentLectureName = lecture.VName;
+    // Some lectures have those keys, some do not. This is a dirty fix to not make the site crash or throw excess errors. Instead, database structure should be made more consistent in the future
     try {
         lectureStartTime = lecture.VZeit.VZBeginn;
         lectureEndTime = lecture.VZeit.VZEnde;

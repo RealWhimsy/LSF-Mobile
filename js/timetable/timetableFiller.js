@@ -59,6 +59,8 @@ function changeEntryColor(entry, colorId) {
     header[0].classList.add("color-" + colorId);
 }
 
+
+//Shows/Hides the Dropdown menu for choosing a different color in the lecture detail view.
 function toggleDropdown() {
     document.getElementById("myDropdown").classList.toggle("show");
 // Close the dropdown if the user clicks outside of it
