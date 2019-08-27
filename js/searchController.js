@@ -10,6 +10,7 @@ initInputs();
 
 // TODO make time input only accept inputs of the current format ("HH:MM") or convert mistyped inputs to proper format
 // TODO make other types of search available (eg. COUNT instead of AND)
+// TODO make list scrollable
 
 
 function initInputs() {
@@ -67,8 +68,17 @@ function searchForResults() {
 
 function showResults() {
     createOverlay();
+    createBackButton();
     createEntries();
     showSearchResults();
+}
+
+function createBackButton() {
+    var backButton = document.createElement('button');
+    backButton.innerHTML = "Hide Search Results";
+    backButton.onclick = function () {hideSearchResultsButton()};
+    backButton.classList.add('timetable-button');
+    overlayContainer.appendChild(backButton);
 }
 
 function createEntries() {

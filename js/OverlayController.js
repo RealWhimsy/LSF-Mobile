@@ -19,3 +19,8 @@ function hideSearchResults() {
         searchResultOverlay.parentNode.removeChild(searchResultOverlay);
     }
 }
+
+function hideSearchResultsButton() {
+    var searchResultOverlay = document.getElementById('searchResultOverlay');
+    searchResultOverlay.parentNode.removeChild(searchResultOverlay);
+}
