@@ -25,7 +25,7 @@
 </head>
 <body id="body">
 
-<div id="overlay" onclick="hideTimetable()">
+<div id="timetableOverlay" class="overlay" onclick="hideTimetable()">
 	<div class="tiva-timetable" data-source="json" data-view="week" data-mode="day" data-start="monday"></div>
 </div>
 
@@ -44,6 +44,32 @@
 <div class="container max-width-sm">
 	<button class="timetable-button" onclick="showTimetable()">Show Timetable</button>
 </div>
+
+<div class="container max-width-sm" style="padding-top: 8px">
+	<div class="dropdown">
+		<button onclick="toggleSearchBar()" class="dropbtn timetable-button">Search courses</button>
+		<div id="search-dropdown" class="dropdown-content">
+		<span>
+			<input type="text" id="nameInput"></input
+			<label for="nameInput">Course Name</label>
+		</span>
+			<span>
+			<input type="text" id="moduleInput"></input
+			<label for="moduleInput">Modules</label>
+		</span>
+			<span>
+			<input type="text" id="startTimeInput"></input
+			<label for="startTimeInput">Start Time</label>
+		</span>
+			<span>
+			<input type="text" id="endTimeInput"></input
+			<label for="endTimeInput">End Time</label>
+		</span>
+			<button id="searchButton">Search</button>
+		</div>
+	</div>
+</div>
+
 
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/6.4.1/firebase-app.js"></script>
@@ -70,7 +96,8 @@
 <script src="js/timetable/timetableFiller.js"></script>
 <script src="js/db_connector.js"></script>
 <script src="js/accordionFiller.js"></script>
-<script src="js/timetableOverlayController.js"></script>
+<script src="js/searchController.js"></script>
+<script src="js/OverlayController.js"></script>
 <script src="js/timetable/jquery.min.js"></script>
 <script src="js/timetable/jquery.magnific-popup.js"></script>
 <script src="js/timetable/timetable.js"></script>

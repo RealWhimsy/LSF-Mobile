@@ -29,6 +29,8 @@ const LECTURE_LAYER_UL_CLASS_LIST = ["cd-accordion__sub", "cd-accordion__sub--l3
 const LECTURE_LAYER_LI_CLASS_LIST = ["cd-accordion__item"];
 const LECTURE_LAYER_A_CLASS_LIST = ["cd-accordion__label", "cd-accordion__label--icon-img"];
 
+const SEARCH_RESULT_UL = ["cd-accordion__item"];
+
 const COLOR_BLUE = "#6a96cc";
 const COLOR_TURQUOISE = "#62b3b3";
 const COLOR_ORANGE = "#e58d6d";

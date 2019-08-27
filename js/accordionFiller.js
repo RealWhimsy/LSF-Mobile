@@ -134,17 +134,17 @@ function showLectureDetails(lectureId){
 
     createLectureDetailElements();
     fillLectureDetailElements(currentLectureDetails);
-    appendChildrenToOverlay();
+    appendChildrenToOverlay(lectureDetailOverlay);
 
-    lectureDetailOverlay.onclick = function(){hideOverlay()};
+    lectureDetailOverlay.onclick = function(){hideOverlay(lectureDetailOverlay)};
     domParent.appendChild(lectureDetailOverlay);
 }
 
-function hideOverlay(){
-    domParent.removeChild(lectureDetailOverlay);
+function hideOverlay(overlay){
+    domParent.removeChild(overlay);
 }
 
-function appendChildrenToOverlay(){
+function appendChildrenToOverlay(overlay){
     var containerDiv = document.createElement("div");
     containerDiv.classList.add("overlay-container");
     initAddToTimetableButton();
@@ -156,7 +156,7 @@ function appendChildrenToOverlay(){
     containerDiv.appendChild(lectureLocation);
     containerDiv.appendChild(addToTimetableButton);
 
-    lectureDetailOverlay.appendChild(containerDiv);
+    overlay.appendChild(containerDiv);
 }
 
 function initAddToTimetableButton(){
