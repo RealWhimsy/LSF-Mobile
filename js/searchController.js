@@ -8,6 +8,9 @@ var overlayContainer;
 initSearchButton();
 initInputs();
 
+// TODO make time input only accept inputs of the current format ("HH:MM") or convert mistyped inputs to proper format
+// TODO make other types of search available (eg. COUNT instead of AND)
+
 
 function initInputs() {
     nameInput = document.getElementById("nameInput");
