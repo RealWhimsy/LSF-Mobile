@@ -26,7 +26,7 @@ function initSearchButton() {
 function toggleSearchBar() {
     document.getElementById("search-dropdown").classList.toggle("show");
 }
-document.getElementById("search-dropdown").classList.toggle("show");
+
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function () {
     if (!document.getElementsByClassName('dropbtn')[0].contains(event.target) && !document.getElementById('search-dropdown').contains(event.target)) {
