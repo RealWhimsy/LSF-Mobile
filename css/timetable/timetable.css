@@ -476,7 +476,8 @@
 		font-size: 9px;
 	}
 	.tiva-timetable .timetable-week .timetable-axis .axis-item {
-		font-size: 12px;	
+		font-size: 12px;
+		color: whitesmoke;
 	}
 	
 	/* Timetable Week */

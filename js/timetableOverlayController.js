@@ -4,5 +4,7 @@ function showTimetable() {
 }
 
 function hideTimetable() {
-    document.getElementById("overlay").style.display = "none";
+    if(!document.getElementsByClassName('tiva-timetable')[0].contains(event.target)){
+        document.getElementById("overlay").style.display = "none";
+    }
 }
