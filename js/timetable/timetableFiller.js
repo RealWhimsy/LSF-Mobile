@@ -1,6 +1,5 @@
 var timetableMaster = {"items": []};
 
-// TODO delete timetable popup on clicking "Delete from timetable"
 
 function addLectureToTimetable(name, day, startTime, endTime, location) {
     day = convertDay(day);
