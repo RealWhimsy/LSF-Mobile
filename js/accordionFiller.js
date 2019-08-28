@@ -21,6 +21,8 @@ var facAlreadyExisting = false;
 var modAlreadyExisting = false;
 var lesAlreadyExisting = false;
 
+var containerDiv;
+
 
 function createAccordionEntry(faculty, currentModule, lesserModule, lectureName) {
     createFacultyEntry(faculty);
@@ -191,6 +193,15 @@ function setupHideButton() {
     hideLectureDetailButton.innerText = "Hide Details";
 }
 
+
+function resetPArrays() {
+    lectureDayPArray = [];
+    lectureNamePArray = [];
+    lectureStartTimePArray = [];
+    lectureEndTimePArray = [];
+    lectureLocationPArray = [];
+    lectureButtonArray = [];
+}
 // This function triggers on clicking a lecture-level entry in the accordion
 // It creates a new div with overlay-properties and inserts it into the page
 // The Overlay-div contains several <p> elements which are filled with details (time, location) etc. of the clicked lecture
@@ -205,17 +216,13 @@ function showLectureDetails(lectureId) {
     createLectureDetailElements(currentLectureDetails);
     fillLectureDetailElements(currentLectureDetails);
     appendChildrenToOverlay(lectureDetailOverlay);
+    containerDiv.insertBefore(hideLectureDetailButton, containerDiv.firstChild);
 
     lectureDetailOverlay.onclick = function () {
         hideOverlay(lectureDetailOverlay)
     };
     domParent.appendChild(lectureDetailOverlay);
-    lectureDayPArray = [];
-    lectureNamePArray = [];
-    lectureStartTimePArray = [];
-    lectureEndTimePArray = [];
-    lectureLocationPArray = [];
-    lectureButtonArray = []
+    resetPArrays();
 }
 
 function hideOverlay(overlay) {
@@ -223,9 +230,10 @@ function hideOverlay(overlay) {
 }
 
 function appendChildrenToOverlay(overlay) {
-    var containerDiv = document.createElement("div");
+    containerDiv = document.createElement("div");
     containerDiv.classList.add("overlay-container");
-    containerDiv.appendChild(hideLectureDetailButton);
+    containerDiv.setAttribute('id', "lectureOverlay");
+
 
     for (var i = 0; i < lectureStartTimePArray.length; i++) {
         containerDiv.appendChild(lectureNamePArray[i]);
