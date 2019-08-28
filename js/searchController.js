@@ -4,6 +4,8 @@ var courseName, module, startTime, endTime;
 var foundLectures = [];
 var overlay;
 var overlayContainer;
+var foundLectureIDs = [];
+var searchSpans = [];
 
 initDropdownButton();
 initSearchButton();
@@ -71,71 +73,82 @@ function searchForResults() {
     searchByEndTime();
     mergeSearches();
     showResults();
-    console.log(foundLectures);
 }
 
 function showResults() {
     createOverlay();
     createBackButton();
-    createEntries();
+    for (var i in foundLectures) {
+        createEntries(foundLectures[i]);
+    }
     showSearchResults();
 }
 
 function createBackButton() {
     var backButton = document.createElement('button');
     backButton.innerHTML = "Hide Search Results";
-    backButton.onclick = function () {hideSearchResultsButton()};
+    backButton.onclick = function () {
+        hideSearchResultsButton()
+    };
     backButton.classList.add('timetable-button');
     overlayContainer.appendChild(backButton);
 }
 
-function createEntries() {
-    for (var i in foundLectures) {
-        var lecUl = document.createElement('ul');
-        addStylesToElement(lecUl, SEARCH_RESULT_UL);
 
-        var lecLi = document.createElement('li');
-        addStylesToElement(lecLi, LECTURE_LAYER_LI_CLASS_LIST);
+function createEntries(currentLecture) {
+    console.log(currentLecture);
+    var lecUl = document.createElement('ul');
+    addStylesToElement(lecUl, SEARCH_RESULT_UL);
 
-        var lecA = document.createElement('a');
-        addStylesToElement(lecA, LECTURE_LAYER_A_CLASS_LIST);
-        lecA.setAttribute("href", "#0");
+    var lecLi = document.createElement('li');
+    addStylesToElement(lecLi, LECTURE_LAYER_LI_CLASS_LIST);
 
-        var lecSpan = document.createElement('span');
-        lecSpan.innerHTML = foundLectures[i].LECTURE_NAME_KEY;
-        lecSpan.onclick = function() { showSearchDetails(i) };
+    var lecA = document.createElement('a');
+    addStylesToElement(lecA, LECTURE_LAYER_A_CLASS_LIST);
+    lecA.setAttribute("href", "#0");
 
-        lecUl.appendChild(lecLi);
-        lecLi.appendChild(lecA);
-        lecA.appendChild(lecSpan);
+    var lecSpan = document.createElement('span');
+    lecSpan.innerHTML = currentLecture.LECTURE_NAME_KEY;
+    lecSpan.onclick = function() {
+        showLectureDetails(currentLecture.LECTURE_ID_KEY);
+    };
 
-        overlayContainer.appendChild(lecUl);
-    }
+    lecUl.appendChild(lecLi);
+    lecLi.appendChild(lecA);
+    lecA.appendChild(lecSpan);
+
+    overlayContainer.appendChild(lecUl);
+
+
 }
 
 function showSearchDetails(index) {
-    console.log("procced");
     searchDetailOverlay = document.createElement('div');
     searchDetailOverlay.classList.add('lecture-overlay');
     var currentLectureDetails = foundLectures[index];
 
-    createLectureDetailElements();
+    createLectureDetailElements(currentLectureDetails);
     fillLectureDetailElements(currentLectureDetails);
     appendChildrenToOverlay(searchDetailOverlay);
 
-    searchDetailOverlay.onclick = function(){hideOverlay(searchDetailOverlay)};
+    searchDetailOverlay.onclick = function () {
+        hideOverlay(searchDetailOverlay)
+    };
     domParent.appendChild(searchDetailOverlay);
+    resetPArrays();
 }
 
 function createOverlay() {
     overlay = document.createElement('div');
     overlay.setAttribute('id', 'searchResultOverlay');
     overlay.classList.add('overlay');
-    overlay.onclick = function(){hideSearchResults()};
+    overlay.onclick = function () {
+        hideSearchResults()
+    };
     document.getElementById("body").appendChild(overlay);
 
     overlayContainer = document.createElement('div');
-    overlayContainer.setAttribute('id','searchResultOverlayContainer');
+    overlayContainer.setAttribute('id', 'searchResultOverlayContainer');
     overlay.appendChild(overlayContainer);
 }
 
@@ -217,8 +230,8 @@ function getSearchParams() {
 }
 
 function searchByEndTime() {
-    for (var i in lectureList) {
-        var currentLecture = lectureList[i];
+    for (var i in courses) {
+        var currentLecture = courses[i];
         if (endTime != null && endTime !== "") {
             if (currentLecture.LECTURE_END_TIME_KEY === endTime) {
                 foundLectures.push(currentLecture);
@@ -228,8 +241,8 @@ function searchByEndTime() {
 }
 
 function searchByStartTime() {
-    for (var i in lectureList) {
-        var currentLecture = lectureList[i];
+    for (var i in courses) {
+        var currentLecture = courses[i];
         if (startTime != null && startTime !== "") {
             if (currentLecture.LECTURE_START_TIME_KEY === startTime) {
                 foundLectures.push(currentLecture);
@@ -239,10 +252,10 @@ function searchByStartTime() {
 }
 
 function searchByName() {
-    for (var i in lectureList) {
-        var currentLecture = lectureList[i];
+    for (var i in courses) {
+        var currentLecture = courses[i];
         if (courseName != null && courseName !== "") {
-            if (currentLecture.LECTURE_NAME_KEY != undefined) {
+            if (currentLecture.LECTURE_NAME_KEY !== undefined) {
                 if (currentLecture.LECTURE_NAME_KEY.toLowerCase().trim().includes(courseName)) {
                     foundLectures.push(currentLecture);
                 }

@@ -24,3 +24,9 @@ function hideSearchResultsButton() {
     var searchResultOverlay = document.getElementById('searchResultOverlay');
     searchResultOverlay.parentNode.removeChild(searchResultOverlay);
 }
+
+function hideOverlay(overlay) {
+    if(!document.getElementById('lectureOverlay').contains(event.target) || event.target === hideLectureDetailButton) {
+        domParent.removeChild(overlay);
+    }
+}

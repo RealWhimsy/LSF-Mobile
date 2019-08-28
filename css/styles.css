@@ -23,6 +23,11 @@
     border: none;
 }
 
+.timetable-button:focus {
+    background-color: #3c763d;
+    color: #FFFFFF;
+}
+
 .lecture-overlay {
     overflow: auto;
     position: fixed; /* Sit on top of the page content */
