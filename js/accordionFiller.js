@@ -66,6 +66,16 @@ function createAccordionEntry(faculty, currentModule, lesserModule, lectureName)
     createLectureEntry(faculty, currentModule, lesserModule, lectureName);
 }
 
+function getLectureId(faculty, currentModule, lesserModule, lectureName) {
+    var path = faculty + ";" + currentModule + ";" + lesserModule;
+    for (var i = 0; i < courses.length; i++) {
+        if(courses[i].LECTURE_PATH === path && courses[i].LECTURE_NAME_KEY === lectureName) {
+            return courses[i].LECTURE_ID_KEY;
+        }
+    }
+    return -1;
+}
+
 function createLectureEntry(faculty, currentModule, lesserModule, lectureName) {
     var lecUl = document.createElement('ul');
     addStylesToElement(lecUl, LECTURE_LAYER_UL_CLASS_LIST);
@@ -84,16 +94,12 @@ function createLectureEntry(faculty, currentModule, lesserModule, lectureName) {
     lecUl.appendChild(lecLi);
     lecLi.appendChild(lecA);
     lecA.appendChild(lecSpan);
+    var lectureId = getLectureId(faculty, currentModule, lesserModule, lectureName);
     lecSpan.onclick = function () {
-        showLectureDetails()
+        showLectureDetails(lectureId)
     };
-
-
     currentLesserModule = document.getElementById(faculty + currentModule + lesserModule);
-
-        currentLesserModule.appendChild(lecUl);
-
-
+    currentLesserModule.appendChild(lecUl);
 }
 
 
@@ -216,9 +222,10 @@ function createLesserModuleEntry(faculty, currentModule, lesserModule) {
 // It creates a new div with overlay-properties and inserts it into the page
 // The Overlay-div contains several <p> elements which are filled with details (time, location) etc. of the clicked lecture
 function showLectureDetails(lectureId) {
+    console.log(lectureId);
     lectureDetailOverlay = document.createElement("div");
     lectureDetailOverlay.classList.add("lecture-overlay");
-    var currentLectureDetails = lectureList[lectureId];
+    var currentLectureDetails = courses[lectureId];
 
     createLectureDetailElements();
     fillLectureDetailElements(currentLectureDetails);
