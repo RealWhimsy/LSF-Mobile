@@ -1,10 +1,11 @@
-var searchButton;
+var searchButton, dropdownButton;
 var nameInput, moduleInput, startTimeInput, endTimeInput;
 var courseName, module, startTime, endTime;
 var foundLectures = [];
 var overlay;
 var overlayContainer;
 
+initDropdownButton();
 initSearchButton();
 initInputs();
 
@@ -12,6 +13,13 @@ initInputs();
 // TODO make other types of search available (eg. COUNT instead of AND)
 // TODO make list scrollable
 
+
+function initDropdownButton() {
+    dropdownButton = document.getElementById('searchCoursesButton');
+    dropdownButton.onclick = function () {
+        toggleSearchBar();
+    }
+}
 
 function initInputs() {
     nameInput = document.getElementById("nameInput");
@@ -32,9 +40,9 @@ function toggleSearchBar() {
 }
 
 // Close the dropdown menu if the user clicks outside of it
-window.onclick = function () {
+window.addEventListener('click', function () {
     if (!document.getElementsByClassName('dropbtn')[0].contains(event.target) && !document.getElementById('search-dropdown').contains(event.target)) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var dropdowns = document.getElementsByClassName("search-dropdown-content");
         var i;
         for (i = 0; i < dropdowns.length; i++) {
             var openDropdown = dropdowns[i];
@@ -43,7 +51,7 @@ window.onclick = function () {
             }
         }
     }
-};
+});
 
 
 function readInputValues() {
