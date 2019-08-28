@@ -24,6 +24,7 @@
 }
 
 .lecture-overlay {
+    overflow: auto;
     position: fixed; /* Sit on top of the page content */
     display: block; /* Hidden by default */
     width: 100%; /* Full width (cover the whole page) */
@@ -39,6 +40,7 @@
 }
 
 .overlay-container {
+    overflow: auto;
     margin: auto;
     width: 90%;
     color: whitesmoke;
@@ -102,5 +104,10 @@
 .dd-button-3 {background-color: #f3da6c;}
 
 .dd-button-4 {background-color: #e58d6d;}
+
+.detail-hide-button {
+    margin-bottom: 16px;
+    border: 1px solid black;
+}
 
 

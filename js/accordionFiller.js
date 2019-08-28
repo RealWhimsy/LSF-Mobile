@@ -2,10 +2,14 @@ var currentFaculty, currentModule, currentLesserModule;
 var accordionList = document.getElementById('accordion-list');
 var domParent = document.getElementById("body");
 
-var lectureDetailOverlay, lectureDetailList, lectureDay, lectureStartTime, lectureEndTime, lectureLocation, lectureName,
-    addToTimetableButton;
-
-var detailName, detailStartTime, detailEndTime, detailLocation, detailDay;
+var lectureDetailOverlay, lectureDetailList;
+var lectureDayPArray = [];
+var lectureStartTimePArray = [];
+var lectureEndTimePArray = [];
+var lectureLocationPArray = [];
+var lectureNamePArray = [];
+var lectureButtonArray = [];
+var addToTimetableButton, hideLectureDetailButton;
 
 var currentID = 0;
 
@@ -18,47 +22,6 @@ var modAlreadyExisting = false;
 var lesAlreadyExisting = false;
 
 
-// function checkForDuplicateEntries(faculty, currentModule, lesserModule) {
-//     console.log(facultyList);
-//     for (var i in facultyList) {
-//         if (facultyList[i] === faculty) {
-//             facAlreadyExisting = true;
-//         }
-//     }
-//     if (!facAlreadyExisting) {
-//         facultyList.push(faculty);
-//         createFacultyEntry(faculty);
-//     } else {
-//         facAlreadyExisting = false;
-//     }
-//
-//     for (var j in moduleList) {
-//         if (moduleList[j] === currentModule) {
-//             modAlreadyExisting = true;
-//         }
-//         if(!modAlreadyExisting) {
-//             moduleList.push(currentModule);
-//             createModuleEntry(faculty, currentModule);
-//         } else {
-//             modAlreadyExisting = false;
-//         }
-//     }
-//
-//     for (var k in lesserModuleList) {
-//         if (lesserModuleList[k] === lesserModule) {
-//             lesAlreadyExisting = true;
-//         }
-//     }
-//     if (!lesAlreadyExisting) {
-//         lesserModuleList.push(lesserModule);
-//         createLesserModuleEntry(faculty, currentModule, lesserModule);
-//     } else {
-//         lesAlreadyExisting = false;
-//     }
-//
-// }
-
-
 function createAccordionEntry(faculty, currentModule, lesserModule, lectureName) {
     createFacultyEntry(faculty);
     createModuleEntry(faculty, currentModule);
@@ -69,7 +32,7 @@ function createAccordionEntry(faculty, currentModule, lesserModule, lectureName)
 function getLectureId(faculty, currentModule, lesserModule, lectureName) {
     var path = faculty + ";" + currentModule + ";" + lesserModule;
     for (var i = 0; i < courses.length; i++) {
-        if(courses[i].LECTURE_PATH === path && courses[i].LECTURE_NAME_KEY === lectureName) {
+        if (courses[i].LECTURE_PATH === path && courses[i].LECTURE_NAME_KEY === lectureName) {
             return courses[i].LECTURE_ID_KEY;
         }
     }
@@ -105,7 +68,7 @@ function createLectureEntry(faculty, currentModule, lesserModule, lectureName) {
 
 function createFacultyEntry(faculty) {
     for (var i = 0; i < facultyList.length; i++) {
-        if(facultyList[i] === faculty) {
+        if (facultyList[i] === faculty) {
             facAlreadyExisting = true;
         }
     }
@@ -140,12 +103,12 @@ function createFacultyEntry(faculty) {
 function createModuleEntry(faculty, currentModule) {
     var modulePath = "" + faculty + currentModule;
     for (var i = 0; i < moduleList.length; i++) {
-        if(moduleList[i] === modulePath) {
+        if (moduleList[i] === modulePath) {
             modAlreadyExisting = true;
         }
     }
 
-    if(modAlreadyExisting === false && currentModule !== null) {
+    if (modAlreadyExisting === false && currentModule !== null) {
         var modUl = document.createElement('ul');
         addStylesToElement(modUl, MODULE_LAYER_UL_CLASS_LIST);
 
@@ -174,18 +137,18 @@ function createModuleEntry(faculty, currentModule) {
         currentFaculty.appendChild(modUl);
         moduleList.push(modulePath);
     }
-   modAlreadyExisting = false;
+    modAlreadyExisting = false;
 }
 
 function createLesserModuleEntry(faculty, currentModule, lesserModule) {
     var lesserModulePath = "" + faculty + currentModule + lesserModule;
     for (var i = 0; i < lesserModuleList.length; i++) {
-        if(lesserModuleList[i] === lesserModulePath) {
+        if (lesserModuleList[i] === lesserModulePath) {
             lesAlreadyExisting = true;
         }
     }
 
-    if(lesAlreadyExisting === false && lesserModule !== null) {
+    if (lesAlreadyExisting === false && lesserModule !== null) {
         var lesUl = document.createElement('ul');
         addStylesToElement(lesUl, LESSER_LAYER_UL_CLASS_LIST);
 
@@ -215,19 +178,31 @@ function createLesserModuleEntry(faculty, currentModule, lesserModule) {
         lesserModuleList.push(lesserModulePath);
 
     }
-   lesAlreadyExisting = false;
+    lesAlreadyExisting = false;
+}
+
+function setupHideButton() {
+    hideLectureDetailButton = document.createElement('button');
+    hideLectureDetailButton.classList.add('timetable-button');
+    hideLectureDetailButton.classList.add('detail-hide-button');
+    hideLectureDetailButton.onclick = function () {
+        hideOverlay(lectureDetailOverlay);
+    };
+    hideLectureDetailButton.innerText = "Hide Details";
 }
 
 // This function triggers on clicking a lecture-level entry in the accordion
 // It creates a new div with overlay-properties and inserts it into the page
 // The Overlay-div contains several <p> elements which are filled with details (time, location) etc. of the clicked lecture
 function showLectureDetails(lectureId) {
-    console.log(lectureId);
     lectureDetailOverlay = document.createElement("div");
     lectureDetailOverlay.classList.add("lecture-overlay");
-    var currentLectureDetails = courses[lectureId];
+    setupHideButton();
 
-    createLectureDetailElements();
+    var currentLectureDetails = courses[lectureId];
+    console.log((currentLectureDetails));
+
+    createLectureDetailElements(currentLectureDetails);
     fillLectureDetailElements(currentLectureDetails);
     appendChildrenToOverlay(lectureDetailOverlay);
 
@@ -235,6 +210,12 @@ function showLectureDetails(lectureId) {
         hideOverlay(lectureDetailOverlay)
     };
     domParent.appendChild(lectureDetailOverlay);
+    lectureDayPArray = [];
+    lectureNamePArray = [];
+    lectureStartTimePArray = [];
+    lectureEndTimePArray = [];
+    lectureLocationPArray = [];
+    lectureButtonArray = []
 }
 
 function hideOverlay(overlay) {
@@ -244,55 +225,57 @@ function hideOverlay(overlay) {
 function appendChildrenToOverlay(overlay) {
     var containerDiv = document.createElement("div");
     containerDiv.classList.add("overlay-container");
-    initAddToTimetableButton();
+    containerDiv.appendChild(hideLectureDetailButton);
 
-    containerDiv.appendChild(lectureName);
-    containerDiv.appendChild(lectureDay);
-    containerDiv.appendChild(lectureStartTime);
-    containerDiv.appendChild(lectureEndTime);
-    containerDiv.appendChild(lectureLocation);
-    containerDiv.appendChild(addToTimetableButton);
+    for (var i = 0; i < lectureStartTimePArray.length; i++) {
+        containerDiv.appendChild(lectureNamePArray[i]);
+        containerDiv.appendChild(lectureDayPArray[i]);
+        containerDiv.appendChild(lectureStartTimePArray[i]);
+        containerDiv.appendChild(lectureEndTimePArray[i]);
+        containerDiv.appendChild(lectureLocationPArray[i]);
+        containerDiv.appendChild(lectureButtonArray[i]);
+    }
+
 
     overlay.appendChild(containerDiv);
 }
 
-function initAddToTimetableButton() {
-    addToTimetableButton = document.createElement('button');
-    addToTimetableButton.onclick = function () {
-        addLectureToTimetable(detailName, detailDay, detailStartTime, detailEndTime, detailLocation)
-    };
-    addToTimetableButton.classList.add("timetable-button");
-    addToTimetableButton.style.border = "1px solid black";
-    addToTimetableButton.innerHTML = "Add to timetable";
-}
 
 // Fills the <p> elements within the overlay-div with the text that should be displayed
 function fillLectureDetailElements(details) {
-    fillDetailVariables(details);
-    lectureName.innerHTML = "Lecture: " + details.LECTURE_NAME_KEY;
-    lectureStartTime.innerHTML = "Start Time: " + details.LECTURE_START_TIME_KEY;
-    lectureEndTime.innerHTML = "End Time: " + details.LECTURE_END_TIME_KEY;
-    lectureLocation.innerHTML = "Location: " + details.LECTURE_LOCATION_KEY;
-    lectureDay.innerHTML = "Weekday: " + details.LECTURE_DAY_KEY;
+    for (var i = 0; i < lectureStartTimePArray.length; i++) {
+        lectureNamePArray[i].innerHTML = "Lecture: " + details.LECTURE_NAME_KEY;
+        lectureStartTimePArray[i].innerHTML = "Start Time: " + details.LECTURE_START_TIME_KEY[i];
+        lectureEndTimePArray[i].innerHTML = "End Time: " + details.LECTURE_END_TIME_KEY[i];
+        lectureLocationPArray[i].innerHTML = "Location: " + details.LECTURE_LOCATION_KEY[i];
+        lectureDayPArray[i].innerHTML = "Weekday: " + details.LECTURE_DAY_KEY[i];
+        setupButton(i, details.LECTURE_NAME_KEY, details.LECTURE_DAY_KEY[i], details.LECTURE_START_TIME_KEY[i], details.LECTURE_END_TIME_KEY[i], details.LECTURE_LOCATION_KEY[i])
+    }
+
 }
 
-// Assigns values to detail-variables to make thema accessible from everywhere
-function fillDetailVariables(details) {
-    detailDay = details.LECTURE_DAY_KEY;
-    detailName = details.LECTURE_NAME_KEY;
-    detailStartTime = details.LECTURE_START_TIME_KEY;
-    detailEndTime = details.LECTURE_END_TIME_KEY;
-    detailLocation = details.LECTURE_LOCATION_KEY;
+function setupButton(index, name, day, startTime, endTime, location) {
+    var currentButton = lectureButtonArray[index];
+    currentButton.onclick = function () {
+        addLectureToTimetable(name, day, startTime, endTime, location);
+    };
+    currentButton.classList.add("timetable-button");
+    currentButton.style.border = "1px solid black";
+    currentButton.innerHTML = "Add to timetable";
 }
+
 
 // Creates the elements for the lecture detail overlay-div
-function createLectureDetailElements() {
+function createLectureDetailElements(details) {
     lectureDetailList = document.createElement("div");
-    lectureName = document.createElement("p");
-    lectureStartTime = document.createElement("p");
-    lectureEndTime = document.createElement("p");
-    lectureLocation = document.createElement("p");
-    lectureDay = document.createElement("p");
+    for (var i = 0; i < details.LECTURE_DAY_KEY.length; i++) {
+        lectureNamePArray.push(document.createElement("p"));
+        lectureStartTimePArray.push(document.createElement("p"));
+        lectureEndTimePArray.push(document.createElement("p"));
+        lectureLocationPArray.push(document.createElement("p"));
+        lectureDayPArray.push(document.createElement("p"));
+        lectureButtonArray.push(addToTimetableButton = document.createElement('button'));
+    }
 }
 
 // Helper method to quickly add an array of Strings to the class list of an element
