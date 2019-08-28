@@ -16,11 +16,11 @@ function showSearchResults() {
 function hideSearchResults() {
     if(!document.getElementById('searchResultOverlayContainer').contains(event.target)){
         var searchResultOverlay = document.getElementById('searchResultOverlay');
-        searchResultOverlay.style.display = "none";
+        searchResultOverlay.parentNode.removeChild(searchResultOverlay);
     }
 }
 
 function hideSearchResultsButton() {
     var searchResultOverlay = document.getElementById('searchResultOverlay');
-    searchResultOverlay.style.display = "none";
+    searchResultOverlay.parentNode.removeChild(searchResultOverlay);
 }
