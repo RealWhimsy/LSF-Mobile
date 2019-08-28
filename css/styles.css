@@ -1,4 +1,4 @@
-#overlay {
+.overlay {
     position: fixed; /* Sit on top of the page content */
     display: none; /* Hidden by default */
     width: 100%; /* Full width (cover the whole page) */
@@ -12,6 +12,10 @@
     cursor: pointer; /* Add a pointer on hover */
     padding: 12px;
 }
+#searchResultOverlay {
+    overflow: auto;
+}
+
 
 .timetable-button {
     background-color: #4C5057;
