@@ -3,7 +3,11 @@ var dbRef = database.ref();
 var lectureList = [];
 var currentLectureId = 0;
 
-var currentFacultyName, currentModuleName, currentLesserModuleName, currentLectureName, lectureStartTime, lectureEndTime, lectureDay, lectureLocation;
+var currentFacultyName, currentModuleName, currentLesserModuleName, currentLectureName;
+var lectureStartTime = [];
+var lectureEndTime = [];
+var lectureDay = [];
+var lectureLocation = [];
 
 
 getFacultiesFromDb();
@@ -75,27 +79,61 @@ function getLectureFromLesserModule(module) {
 function addLectureToList(){
     lectureList.push({
         LECTURE_ID_KEY : currentLectureId,
+        LECTURE_FACULTY_KEY : currentFacultyName,
+        LECTURE_MODULE_KEY : currentModuleName,
+        LECTURE_LESSER_MODULE_KEY: currentLesserModuleName,
+        LECTURE_PATH : currentFacultyName + ";" + currentModuleName + ";" + currentLesserModuleName,
         LECTURE_NAME_KEY : currentLectureName,
         LECTURE_START_TIME_KEY : lectureStartTime,
         LECTURE_END_TIME_KEY : lectureEndTime,
         LECTURE_LOCATION_KEY : lectureLocation,
         LECTURE_DAY_KEY : lectureDay,
     });
+    resetLectureArrays();
+}
+
+function resetLectureArrays(){
+    lectureStartTime = [];
+    lectureEndTime = [];
+    lectureDay = [];
+    lectureLocation = [];
 }
 
 function getLectureDetails(lecture){
     currentLectureName = lecture.VName;
     // Some lectures have those keys, some do not. This is a dirty fix to not make the site crash or throw excess errors. Instead, database structure should be made more consistent in the future
-    try {
-        lectureStartTime = lecture.VZeit.VZBeginn;
-        lectureEndTime = lecture.VZeit.VZEnde;
-        lectureDay = lecture.VZeit.VZWoTagKurz;
-        lectureLocation = lecture.VZeit.VZRaum.VZRaumName;
-    } catch (e) {
-        lectureStartTime, lectureEndTime, lectureDay, lectureLocation = null;
-    }
+    if(lecture.hasOwnProperty("VZeit")){
+            if(lecture.VZeit.hasOwnProperty("VZBeginn")){
+                lectureStartTime.push(lecture.VZeit.VZBeginn);
+                lectureEndTime.push(lecture.VZeit.VZEnde);
+                lectureDay.push(lecture.VZeit.VZWoTagKurz);
+                if(lecture.VZeit.hasOwnProperty("VZRaum")) {
+                    lectureLocation.push(lecture.VZeit.VZRaum.VZRaumName);
+                } else {
+                    lectureLocation.push("Unknown Location");
+                }
 
+            } else {
+                for (var i in lecture.VZeit) {
+                    lectureStartTime.push(lecture.VZeit[i].VZBeginn);
+                    lectureEndTime.push(lecture.VZeit[i].VZEnde);
+                    lectureDay.push(lecture.VZeit[i].VZWoTagKurz);
+                    if(lecture.VZeit[i].hasOwnProperty("VZRaum")){
+                        lectureLocation.push(lecture.VZeit[i].VZRaum.VZRaumName);
+                    } else {
+                        lectureLocation.push("Unknown Location");
+                    }
+
+                }
+            }
+
+
+    }
 }
+
+
+
+
 
 
 
