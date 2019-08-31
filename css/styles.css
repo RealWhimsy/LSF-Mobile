@@ -23,9 +23,8 @@
     border: none;
 }
 
-.timetable-button:focus {
-    background-color: #3c763d;
-    color: #FFFFFF;
+.timetable-added {
+    background-color: darkgreen;
 }
 
 .lecture-overlay {
@@ -61,6 +60,7 @@
 .dropdown {
     position: relative;
     display: inline-block;
+    width: 100%;
 }
 
 .dropdown-content {
@@ -92,13 +92,13 @@
 }
 
 .search-dropdown-content button {
-    color: black;
+    color: white;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    background-color: #4C5057;
     width: 100%;
 }
-
 
 .show {display: block;}
 
@@ -111,8 +111,95 @@
 .dd-button-4 {background-color: #e58d6d;}
 
 .detail-hide-button {
-    margin-bottom: 16px;
+    margin-top: 20px;
     border: 1px solid black;
+    width: 80%;
+}
+
+.navButton {
+    width: 50%;
+    display: inline-block;
+    border: none;
+    background-color: #4C5057;
+    color: #FFFFFF;
+    -webkit-transition-duration: 0.3s; /* Safari */
+    transition-duration: 0.3s;
+}
+
+.navButton:hover {
+    background-color: #adadad;
+    color: black;
+}
+
+.selected {
+    background-color: #adadad;
+    color: black;
+}
+
+#courseButton {
+    float: left;
+}
+
+.search-dropdown-content {
+    background-color: #4C5057;
+    color: white;
+    width: 100%;
+}
+
+.search-line label {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.search-line input {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#searchButton {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 8px;
+}
+
+#searchButton:hover {
+    background-color: #adadad;
+    color: black;
+    -webkit-transition-duration: 0.3s; /* Safari */
+    transition-duration: 0.3s;
+}
+
+.lecture {
+    font: 16px Jaldi;
+    color: white;
+}
+
+.lecture-icon {
+    color: white;
+}
+
+.description {
+    color: white;
+    text-align: justify;
+    width: 90%;
+    margin: auto;
+}
+
+.description p {
+    font-size: 12px;
+    margin-bottom: 16px;
+}
+
+body {
+    background-color: #1A1A1D;
+}
+
+h1 {
+    color: #7D003C;
+    font-size: 42px;
 }
 
 

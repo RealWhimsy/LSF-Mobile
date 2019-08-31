@@ -28,7 +28,9 @@ const LESSER_LAYER_LABEL_CLASS_LIST = ["cd-accordion__label", "cd-accordion__lab
 
 const LECTURE_LAYER_UL_CLASS_LIST = ["cd-accordion__sub", "cd-accordion__sub--l3"];
 const LECTURE_LAYER_LI_CLASS_LIST = ["cd-accordion__item"];
-const LECTURE_LAYER_A_CLASS_LIST = ["cd-accordion__label", "cd-accordion__label--icon-img"];
+const LECTURE_LAYER_A_CLASS_LIST = ["last_item", "cd-accordion__label"];
+
+const LECTURE_ICON_CLASS_LIST = ["fas", "fa-graduation-cap", "lecture-icon"];
 
 const SEARCH_RESULT_UL = ["cd-accordion__item"];
 

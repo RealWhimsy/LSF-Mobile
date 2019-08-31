@@ -73,11 +73,11 @@
 .tiva-timetable .timetable-week .timetable-column .timetable-column-header {
 	height: 26px;
 	padding: 10px 0;
-	background-color: #c594c5;
+	background-color: #4C5057;
 	color: #fff;
 	font-weight: 400;
 	text-align: center;
-	border-right: 1px solid #d1d1d1;
+	border: 1px solid #d1d1d1;
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
@@ -88,9 +88,7 @@
 .tiva-timetable .timetable-week .timetable-column .timetable-column-header span {
 	font-size: 14px;	
 }
-.tiva-timetable .timetable-week .timetable-column .timetable-column-header.last-column {
-	border-right: none;
-}
+
 .tiva-timetable .timetable-week .timetable-column .timetable-column-content {
 	position: absolute;
     top: 46px;
