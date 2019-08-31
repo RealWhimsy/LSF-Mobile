@@ -4,17 +4,13 @@ var courseName, moduleString, startTime, endTime;
 var foundLectures = [];
 var overlay;
 var overlayContainer;
-var foundLectureIDs = [];
-var searchSpans = [];
+
 
 initDropdownButton();
 initSearchButton();
 initInputs();
 
 // TODO make time input only accept inputs of the current format ("HH:MM") or convert mistyped inputs to proper format
-// TODO make other types of search available (eg. COUNT instead of AND)
-// TODO make list scrollable
-
 
 function initDropdownButton() {
     dropdownButton = document.getElementById('searchCoursesButton');
@@ -109,7 +105,7 @@ function createEntries(currentLecture) {
 
     var lecSpan = document.createElement('span');
     lecSpan.innerHTML = currentLecture.LECTURE_NAME_KEY;
-    lecSpan.onclick = function() {
+    lecSpan.onclick = function () {
         showLectureDetails(currentLecture.LECTURE_ID_KEY);
     };
 
@@ -120,22 +116,6 @@ function createEntries(currentLecture) {
     overlayContainer.appendChild(lecUl);
 
 
-}
-
-function showSearchDetails(index) {
-    searchDetailOverlay = document.createElement('div');
-    searchDetailOverlay.classList.add('lecture-overlay');
-    var currentLectureDetails = foundLectures[index];
-
-    createLectureDetailElements(currentLectureDetails);
-    fillLectureDetailElements(currentLectureDetails);
-    appendChildrenToOverlay(searchDetailOverlay);
-
-    searchDetailOverlay.onclick = function () {
-        hideOverlay(searchDetailOverlay)
-    };
-    domParent.appendChild(searchDetailOverlay);
-    resetPArrays();
 }
 
 function createOverlay() {
@@ -160,13 +140,13 @@ function mergeSearches() {
 }
 
 function deleteNonMatchingLectures(index, params) {
+    console.log(index);
     if (params[0] === true) {
-        if (params[index]) {
-            for (var i in foundLectures) {
-                if (foundLectures[i].LECTURE_NAME_KEY !== undefined) {
-                    if (!foundLectures[i].LECTURE_NAME_KEY.toLowerCase().trim().includes(courseName)) {
-                        foundLectures.splice(i, 1);
-                    }
+
+        for (var i in foundLectures) {
+            if (foundLectures[i].LECTURE_NAME_KEY !== undefined) {
+                if (!foundLectures[i].LECTURE_NAME_KEY.toLowerCase().trim().includes(courseName)) {
+                    foundLectures.splice(i, 1);
                 }
             }
         }
@@ -175,18 +155,17 @@ function deleteNonMatchingLectures(index, params) {
 
     if (params[1] === true) {
         var contained = false;
-        if (params[index]) {
-            for (var t in foundLectures) {
-                for (var d in foundLectures[t].LECTURE_MODULE_SEARCH_STRING) {
-                    if (foundLectures[t].LECTURE_MODULE_SEARCH_STRING[d] !== undefined) {
-                        if (foundLectures[t].LECTURE_MODULE_SEARCH_STRING[d].toLowerCase().trim().includes(moduleString)) {
-                            contained = true;
-                        }
+
+        for (var t in foundLectures) {
+            for (var d in foundLectures[t].LECTURE_MODULE_SEARCH_STRING) {
+                if (foundLectures[t].LECTURE_MODULE_SEARCH_STRING[d] !== undefined) {
+                    if (foundLectures[t].LECTURE_MODULE_SEARCH_STRING[d].toLowerCase().trim().includes(moduleString)) {
+                        contained = true;
                     }
                 }
-                if(!contained) {
-                    foundLectures.splice(t, 1);
-                }
+            }
+            if (!contained) {
+                foundLectures.splice(t, 1);
             }
         }
     }
@@ -194,44 +173,39 @@ function deleteNonMatchingLectures(index, params) {
 
     if (params[2] === true) {
         contained = false;
-        if (params[index]) {
-            for (var j in foundLectures) {
-                if (foundLectures[j].LECTURE_START_TIME_KEY !== undefined) {
-                    for (var start in foundLectures[j].LECTURE_START_TIME_KEY) {
-                        if (foundLectures[j].LECTURE_START_TIME_KEY[start] === startTime) {
-                            contained = true;
-                        }
+        for (var j in foundLectures) {
+            if (foundLectures[j].LECTURE_START_TIME_KEY !== undefined) {
+                for (var start in foundLectures[j].LECTURE_START_TIME_KEY) {
+                    if (foundLectures[j].LECTURE_START_TIME_KEY[start] === startTime) {
+                        contained = true;
                     }
                 }
-                if (!contained) {
-                    foundLectures.splice(j, 1);
-                }
+            }
+            if (!contained) {
+                foundLectures.splice(j, 1);
             }
         }
     }
 
     if (params[3] === true) {
         contained = false;
-        if (params[index]) {
-            for (var k in foundLectures) {
-                if (foundLectures[k].LECTURE_END_TIME_KEY !== undefined) {
-                    for(var end in foundLectures[k].LECTURE_END_TIME_KEY) {
-                        console.log(foundLectures[k]);
-                        console.log(foundLectures[k].LECTURE_END_TIME_KEY[end]);
-                        if (foundLectures[k].LECTURE_END_TIME_KEY[end] === endTime) {
-                            console.log("it contains");
-                            contained = true;
-                        }
-                    }
 
-                }
-                if(contained === false) {
-                    console.log("split because end time");
-                    foundLectures.splice(k, 1);
+        for (var k in foundLectures) {
+            if (foundLectures[k].LECTURE_END_TIME_KEY !== undefined) {
+                for (var end in foundLectures[k].LECTURE_END_TIME_KEY) {
+                    console.log(foundLectures[k]);
+                    console.log(foundLectures[k].LECTURE_END_TIME_KEY[end]);
+                    if (foundLectures[k].LECTURE_END_TIME_KEY[end] === endTime) {
+                        console.log("it contains");
+                        contained = true;
+                    }
                 }
             }
+            if (contained === false) {
+                console.log("split because end time");
+                foundLectures.splice(k, 1);
+            }
         }
-
     }
 }
 
@@ -268,7 +242,7 @@ function searchByEndTime() {
     for (var i in courses) {
         var currentLecture = courses[i];
         if (endTime != null && endTime !== "") {
-            for(var bb in currentLecture.LECTURE_END_TIME_KEY) {
+            for (var bb in currentLecture.LECTURE_END_TIME_KEY) {
                 if (currentLecture.LECTURE_END_TIME_KEY[bb] === endTime) {
                     foundLectures.push(currentLecture);
                 }
@@ -281,7 +255,7 @@ function searchByStartTime() {
     for (var i in courses) {
         var currentLecture = courses[i];
         if (startTime != null && startTime !== "") {
-            for (var p in currentLecture.LECTURE_START_TIME_KEY){
+            for (var p in currentLecture.LECTURE_START_TIME_KEY) {
                 if (currentLecture.LECTURE_START_TIME_KEY[p] === startTime) {
                     foundLectures.push(currentLecture);
                 }

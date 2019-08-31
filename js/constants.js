@@ -1,17 +1,4 @@
 const LECTURE_NAME_KEY = "LECTURE_NAME_KEY";
-const LECTURE_START_TIME_KEY = "LECTURE_START_TIME_KEY";
-const LECTURE_END_TIME_KEY = "LECTURE_END_TIME_KEY";
-const LECTURE_DAY_KEY = "LECTURE_DAY_KEY";
-const LECTURE_LOCATION_KEY = "LECTURE_LOCATION_KEY";
-const LECTURE_ID_KEY = "LECTURE_ID_KEY";
-const LECTURE_PATH = "LECTURE_PATH_KEY";
-const LECTURE_MODULE_SEARCH_STRING = "LECTURE_MODULE_SEARCH_STRING";
-
-const FACULTY_LAYER = 0;
-const MODULE_LAYER = 1;
-const LESSER_MODULE_LAYER = 2;
-const LECTURE_LAYER = 3;
-const NOT_FOUND_LAYER = 4;
 
 const FACULTY_LAYER_LI_CLASS_LIST = ["cd-accordion__item", "cd-accordion__item--has-children"];
 const FACULTY_LAYER_INPUT_CLASS_LIST = ["cd-accordion__input"];
@@ -35,9 +22,6 @@ const LECTURE_ICON_CLASS_LIST = ["fas", "fa-graduation-cap", "lecture-icon"];
 
 const SEARCH_RESULT_UL = ["cd-accordion__item"];
 
-const COLOR_BLUE = "#6a96cc";
-const COLOR_TURQUOISE = "#62b3b3";
-const COLOR_ORANGE = "#e58d6d";
-const COLOR_YELLOW = "#f3da6c";
+
 
 
