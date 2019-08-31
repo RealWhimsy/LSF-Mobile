@@ -115,4 +115,36 @@
     border: 1px solid black;
 }
 
+.navButton {
+    width: 50%;
+    display: inline-block;
+    border: none;
+    background-color: #4C5057;
+    color: #FFFFFF;
+    -webkit-transition-duration: 0.3s; /* Safari */
+    transition-duration: 0.3s;
+}
+
+.navButton:hover {
+    background-color: #adadad;
+    color: black;
+}
+
+.selected {
+    background-color: #adadad;
+    color: black;
+}
+
+#courseButton {
+    float: left;
+}
+
+body {
+    background-color: #1A1A1D;
+}
+
+h1 {
+    color: #7D003C;
+}
+
 

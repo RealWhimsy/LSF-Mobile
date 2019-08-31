@@ -10,7 +10,8 @@
 	<!--	      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
 
 	<!-- Timetable Font -->
-	<link href="https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic"
+	      rel="stylesheet" type="text/css"/>
 
 	<!-- Timetable CSS Files -->
 	<link rel="stylesheet" href="css/timetable/magnific-popup.css">
@@ -25,25 +26,23 @@
 </head>
 <body id="body">
 
-<div id="timetableOverlay" class="overlay" onclick="hideTimetable()">
-	<div class="tiva-timetable" data-source="json" data-view="week" data-mode="day" data-start="monday"></div>
-</div>
-
-
-
 <section class="container max-width-sm" id="accordion-section">
 	<div class="text-component text-center">
 		<h1>LSF-Mobile</h1>
 	</div>
 
+
+	<div>
+		<button id="courseButton" class="navButton selected" onclick="toggleMainView(this)">Courses</button>
+		<button id="timetableButton" class="navButton" onclick="toggleMainView(this)">Timetable</button>
+	</div>
+	<div id="timetable" class="tiva-timetable" data-source="json" data-view="week" data-mode="day" data-start="monday"
+	     style="display: none"></div>
 	<ul class="cd-accordion cd-accordion--animated margin-top-lg margin-bottom-lg" id="accordion-list">
 
 
 	</ul>
 </section>
-<div class="container max-width-sm">
-	<button class="timetable-button" onclick="showTimetable()">Show Timetable</button>
-</div>
 
 <div class="container max-width-sm" style="padding-top: 8px">
 	<div class="dropdown">

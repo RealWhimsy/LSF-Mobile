@@ -18,10 +18,6 @@ html {
     box-sizing: border-box
 }
 
-body {
-    background-color: hsl(0, 0%, 100%);
-    background-color: var(--color-bg, white)
-}
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, main, form legend {
     display: block
@@ -1011,16 +1007,9 @@ body {
     font-size: var(--text-base-size, 1em);
     font-family: 'Jaldi', sans-serif;
     font-family: var(--font-primary, sans-serif);
-    color: hsl(240, 4%, 20%);
-    color: var(--color-contrast-high, #313135)
+
 }
 
-h1, h2, h3, h4 {
-    color: hsl(240, 8%, 12%);
-    color: var(--color-contrast-higher, #1c1c21);
-    line-height: 1.2;
-    line-height: var(--heading-line-height, 1.2)
-}
 
 .text-xxxl {
     font-size: 2.48832em;
@@ -2135,21 +2124,6 @@ u, .text-underline {
 .margin-top-xs {
     margin-top: 0.5em;
     margin-top: var(--space-xs)
-}
-
-.margin-top-sm {
-    margin-top: 0.75em;
-    margin-top: var(--space-sm)
-}
-
-.margin-top-md {
-    margin-top: 1.25em;
-    margin-top: var(--space-md)
-}
-
-.margin-top-lg {
-    margin-top: 2em;
-    margin-top: var(--space-lg)
 }
 
 .margin-top-xl {
@@ -3514,19 +3488,11 @@ mark {
     --font-primary: 'Jaldi', sans-serif
 }
 
-body {
-    background-color: hsl(127, 83%, 80%);
-    background-color: var(--cd-color-2)
-}
 
 .cd-article-link {
     color: rgba(0, 0, 0, 0.5)
 }
 
-h1 {
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.9)
-}
 
 .cd-accordion {
     background: hsl(218, 7%, 32%);
