@@ -222,7 +222,7 @@ function showLectureDetails(lectureId) {
     createLectureDetailElements(currentLectureDetails);
     fillLectureDetailElements(currentLectureDetails);
     appendChildrenToOverlay(lectureDetailOverlay);
-    containerDiv.insertBefore(hideLectureDetailButton, containerDiv.firstChild);
+    containerDiv.appendChild(hideLectureDetailButton);
 
     lectureDetailOverlay.onclick = function () {
         hideOverlay(lectureDetailOverlay)
