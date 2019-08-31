@@ -1,14 +1,4 @@
 
-function showTimetable() {
-    document.getElementById("timetableOverlay").style.display = "block";
-}
-
-function hideTimetable() {
-    if(!document.getElementsByClassName('tiva-timetable')[0].contains(event.target)){
-        document.getElementById("timetableOverlay").style.display = "none";
-    }
-}
-
 function showSearchResults() {
     document.getElementById("searchResultOverlay").style.display = "block";
 }

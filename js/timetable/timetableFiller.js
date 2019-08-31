@@ -1,7 +1,16 @@
 var timetableMaster = {"items": []};
+var addedIcon = setupIcon();
 
 
-function addLectureToTimetable(name, day, startTime, endTime, location) {
+function setupIcon() {
+    var addedIcon = document.createElement('i');
+    addedIcon.style.paddingLeft = "4px";
+    addedIcon.classList.add("far");
+    addedIcon.classList.add("fa-check-circle");
+    return addedIcon;
+}
+
+function addLectureToTimetable(name, day, startTime, endTime, location, button) {
     day = convertDay(day);
     timetableMaster.items.push({
         "name": name,
@@ -12,6 +21,10 @@ function addLectureToTimetable(name, day, startTime, endTime, location) {
         "color": "4",
         "description": "Location: " + location
     });
+    button.classList.add('timetable-added');
+    button.innerText = "Successfully added";
+    setupIcon();
+    button.appendChild(addedIcon);
     onTimetableChanged();
 }
 

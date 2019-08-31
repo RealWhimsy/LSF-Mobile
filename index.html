@@ -21,6 +21,9 @@
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/accordion/style.css">
 
+	<!-- Icons -->
+	<script src="https://kit.fontawesome.com/fd09aeec21.js"></script>
+
 
 	<title>LSF-Mobile</title>
 </head>
@@ -46,25 +49,25 @@
 
 <div class="container max-width-sm" style="padding-top: 8px">
 	<div class="dropdown">
-		<button class="dropbtn timetable-button" id="searchCoursesButton">Search courses</button>
+		<button class="dropbtn timetable-button" id="searchCoursesButton"><i class="fas fa-search-plus" style="padding-right: 4px"></i>Search courses</button>
 		<div id="search-dropdown" class="search-dropdown-content">
-		<span>
-			<input type="text" id="nameInput"></input
-			<label for="nameInput">Course Name</label>
-		</span>
-			<span>
-			<input type="text" id="moduleInput"></input
-			<label for="moduleInput">Modules</label>
-		</span>
-			<span>
-			<input type="text" id="startTimeInput"></input
-			<label for="startTimeInput">Start Time</label>
-		</span>
-			<span>
-			<input type="text" id="endTimeInput"></input
-			<label for="endTimeInput">End Time</label>
-		</span>
-			<button id="searchButton">Search</button>
+			<div class="search-line">
+				<label for="nameInput">Course Name:</label>
+				<input type="text" id="nameInput">
+			</div>
+			<div class="search-line">
+				<label for="moduleInput">Modules:</label>
+				<input type="text" id="moduleInput">
+			</div>
+			<div class="search-line">
+				<label for="startTimeInput">Start Time:</label>
+				<input type="text" id="startTimeInput">
+			</div>
+			<div class="search-line">
+				<label for="endTimeInput">End Time:</label>
+				<input type="text" id="endTimeInput">
+			</div>
+			<button id="searchButton"><i class="fas fa-search" style="padding-right: 4px"></i>Search</button>
 		</div>
 	</div>
 </div>

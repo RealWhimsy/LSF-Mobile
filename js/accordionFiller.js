@@ -265,7 +265,7 @@ function fillLectureDetailElements(details) {
 function setupButton(index, name, day, startTime, endTime, location) {
     var currentButton = lectureButtonArray[index];
     currentButton.onclick = function () {
-        addLectureToTimetable(name, day, startTime, endTime, location);
+        addLectureToTimetable(name, day, startTime, endTime, location, currentButton);
     };
     currentButton.classList.add("timetable-button");
     currentButton.style.border = "1px solid black";

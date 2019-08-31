@@ -23,9 +23,8 @@
     border: none;
 }
 
-.timetable-button:focus {
-    background-color: #3c763d;
-    color: #FFFFFF;
+.timetable-added {
+    background-color: darkgreen;
 }
 
 .lecture-overlay {
@@ -61,6 +60,7 @@
 .dropdown {
     position: relative;
     display: inline-block;
+    width: 100%;
 }
 
 .dropdown-content {
@@ -92,13 +92,13 @@
 }
 
 .search-dropdown-content button {
-    color: black;
+    color: white;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    background-color: #4C5057;
     width: 100%;
 }
-
 
 .show {display: block;}
 
@@ -137,6 +137,24 @@
 
 #courseButton {
     float: left;
+}
+
+.search-dropdown-content {
+    background-color: #4C5057;
+    color: white;
+    width: 100%;
+}
+
+.search-line input {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+#searchButton:hover {
+    background-color: #adadad;
+    color: black;
+    -webkit-transition-duration: 0.3s; /* Safari */
+    transition-duration: 0.3s;
 }
 
 body {
