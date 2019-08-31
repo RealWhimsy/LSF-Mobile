@@ -3545,7 +3545,7 @@ mark {
     box-shadow: inset 0 -1px lightness(hsl(218, 7%, 32%), 1.2);
     box-shadow: inset 0 -1px var(--color-shadow);
     color: hsl(0, 0%, 100%);
-    color: var(--color-white)
+    color: var(--color-white);
 }
 
 .cd-accordion__label span {
@@ -3564,6 +3564,19 @@ mark {
     width: 16px;
     height: 16px;
     background-image: url("../img/cd-icons.svg");
+    background-repeat: no-repeat;
+    margin-right: 0.25em;
+    margin-right: var(--space-xxxs);
+    padding-top: 12px;
+    padding-right: 12px;
+}
+
+.cd-accordion__label::after, .last-item {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-image: none !important;
     background-repeat: no-repeat;
     margin-right: 0.25em;
     margin-right: var(--space-xxxs)
@@ -3608,6 +3621,8 @@ mark {
     display: block
 }
 
+
+/* set padding here */
 .cd-accordion__sub--l1 .cd-accordion__label {
     background: hsl(218, 7%, 20.8%);
     background: hsl(var(--cd-color-1-h), var(--cd-color-1-s), calc(var(--cd-color-1-l) * 0.65));
@@ -3615,25 +3630,26 @@ mark {
     --color-shadow: lightness(var(--cd-color-1), 0.85);
     box-shadow: inset 0 -1px lightness(hsl(218, 7%, 32%), 0.85);
     box-shadow: inset 0 -1px var(--color-shadow);
-    padding-left: calc(1.25em + 16px);
-    padding-left: calc(var(--space-md) + 16px)
+    padding-left: calc(1.25em + 4px);
+    padding-left: calc(var(--space-md) + 4px);
 }
 
 .cd-accordion__sub--l1 .cd-accordion__label:hover {
     background: hsl(218, 7%, 24%);
-    background: hsl(var(--cd-color-1-h), var(--cd-color-1-s), calc(var(--cd-color-1-l) * 0.75))
+    background: hsl(var(--cd-color-1-h), var(--cd-color-1-s), calc(var(--cd-color-1-l) * 0.75));
 }
 
 .cd-accordion__item:last-child .cd-accordion__label {
     box-shadow: none
 }
 
+/* and here */
 .cd-accordion__sub--l2 .cd-accordion__label {
-    padding-left: calc(1.5em + 32px);
-    padding-left: calc(var(--space-md) + var(--space-xxxs) + 32px)
+    padding-left: calc(1.5em + 8px);
+    padding-left: calc(var(--space-md) + var(--space-xxxs) + 8px)
 }
 
 .cd-accordion__sub--l3 .cd-accordion__label {
-    padding-left: calc(1.5em + 48px);
-    padding-left: calc(var(--space-md) + var(--space-xxxs) + 48px)
+    padding-left: calc(1.5em + 12px);
+    padding-left: calc(var(--space-md) + var(--space-xxxs) + 12px)
 }

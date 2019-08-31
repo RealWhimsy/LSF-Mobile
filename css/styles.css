@@ -157,6 +157,15 @@
     transition-duration: 0.3s;
 }
 
+.lecture {
+    font: 16px Jaldi;
+    color: white;
+}
+
+.lecture-icon {
+    color: white;
+}
+
 body {
     background-color: #1A1A1D;
 }

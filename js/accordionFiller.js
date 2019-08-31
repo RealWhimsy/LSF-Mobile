@@ -51,10 +51,16 @@ function createLectureEntry(faculty, currentModule, lesserModule, lectureName) {
 
     var lecA = document.createElement('a');
     addStylesToElement(lecA, LECTURE_LAYER_A_CLASS_LIST);
-    lecA.setAttribute("href", "#0");
+
+    var lecIcon = document.createElement('i');
+    addStylesToElement(lecIcon, LECTURE_ICON_CLASS_LIST);
+    lecA.appendChild(lecIcon);
 
     var lecSpan = document.createElement('span');
     lecSpan.innerHTML = lectureName;
+    lecSpan.classList.add('lecture');
+
+
 
     lecUl.appendChild(lecLi);
     lecLi.appendChild(lecA);
