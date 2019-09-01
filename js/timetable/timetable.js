@@ -714,6 +714,7 @@ jQuery(document).ready(function(){
 
 
 function onTimetableChanged(){
+	localStorage.setItem(TIMETABLE_LOCAL_KEY, JSON.stringify(timetableMaster));
 	jQuery('.tiva-timetable').each(function(index) {
 		// Set id for timetable
 		jQuery(this).attr('id', 'timetable-' + (index + 1));

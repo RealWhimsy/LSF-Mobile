@@ -22,6 +22,6 @@ const LECTURE_ICON_CLASS_LIST = ["fas", "fa-graduation-cap", "lecture-icon"];
 
 const SEARCH_RESULT_UL = ["cd-accordion__item"];
 
-
+const TIMETABLE_LOCAL_KEY = "timetable";
 
 

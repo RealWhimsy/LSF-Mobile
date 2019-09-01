@@ -2,6 +2,15 @@ var timetableMaster = {"items": []};
 var addedIcon = setupIcon();
 
 
+
+checkForStoredTimetable();
+function checkForStoredTimetable() {
+    if (localStorage.getItem(TIMETABLE_LOCAL_KEY ) !== null) {
+        timetableMaster = JSON.parse(localStorage.getItem(TIMETABLE_LOCAL_KEY));
+    }
+}
+
+
 function setupIcon() {
     var addedIcon = document.createElement('i');
     addedIcon.style.paddingLeft = "4px";
