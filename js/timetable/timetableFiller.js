@@ -19,7 +19,7 @@ function setupIcon() {
     return addedIcon;
 }
 
-function addLectureToTimetable(name, day, startTime, endTime, location, button) {
+function addLectureToTimetable(name, day, startTime, endTime, location, button, faculty) {
     day = convertDay(day);
     timetableMaster.items.push({
         "name": name,
@@ -28,7 +28,7 @@ function addLectureToTimetable(name, day, startTime, endTime, location, button) 
         "start_time": startTime,
         "end_time": endTime,
         "color": "4",
-        "description": "Location: " + location
+        "description": "Ort: " + location + "<br>" + "Fakultät: " + faculty
     });
     button.classList.add('timetable-added');
     button.innerText = "Successfully added";

@@ -1,5 +1,7 @@
 const LECTURE_NAME_KEY = "LECTURE_NAME_KEY";
 
+const LECTURE_FACULTY_KEY = "LECTURE_FACULTY_KEY";
+
 const FACULTY_LAYER_LI_CLASS_LIST = ["cd-accordion__item", "cd-accordion__item--has-children"];
 const FACULTY_LAYER_INPUT_CLASS_LIST = ["cd-accordion__input"];
 const FACULTY_LAYER_LABEL_CLASS_LIST = ["cd-accordion__label", "cd-accordion__label--icon-folder"];
