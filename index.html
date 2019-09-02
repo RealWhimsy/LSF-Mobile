@@ -33,7 +33,7 @@
 
 <section class="description">
 	<h3>Welcome to LSF-Mobile!</h3>
-	<p>
+	<p id="help-text">
 		Tap the folder names in the list below to expand them and browse all available courses.
 		If you find a course that you are interested in, tap it to show additional information about it. Add it to
 		your timetable by clicking the 'Add to timetable' - Button in the course description.
@@ -43,12 +43,18 @@
 		If you want to change or delete an entry in your timetable, just tap it! A menu opens up and you can make
 		changes from there.
 	</p>
+	<p id="hide-help-text" onclick="toggleHelpText()"><i class="fas fa-question"></i> Hilfetext verstecken</p>
+
 </section>
 
 <section class="container max-width-sm" id="accordion-section">
 	<div class="master-bar">
-		<button id="courseButton" class="navButton selected" onclick="toggleMainView(this)"><i class="fas fa-graduation-cap"></i> Courses</button>
-		<button id="timetableButton" class="navButton" onclick="toggleMainView(this)"><i class="fas fa-calendar-alt"></i> Timetable</button>
+		<button id="courseButton" class="navButton selected" onclick="toggleMainView(this)"><i
+				class="fas fa-graduation-cap"></i> Courses
+		</button>
+		<button id="timetableButton" class="navButton" onclick="toggleMainView(this)"><i
+				class="fas fa-calendar-alt"></i> Timetable
+		</button>
 		<button id="searchCoursesButton" class="navButton"><i class="fas fa-search-plus"></i> Search</button>
 	</div>
 	<div id="timetable" class="tiva-timetable" data-source="json" data-view="week" data-mode="day"

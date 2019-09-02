@@ -225,6 +225,13 @@
     z-index: 5;
 }
 
+#hide-help-text {
+    display: inline-block;
+    color: #1089c2;
+    text-decoration: underline;
+}
+
+
 body {
     background-color: #1A1A1D;
 }

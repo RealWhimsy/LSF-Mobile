@@ -1,4 +1,30 @@
 
+checkHelpTextStatus();
+
+
+function checkHelpTextStatus() {
+    if(localStorage.getItem(SHOW_HELP_TEXT) === "false") {
+        changeHelpText(false);
+    } else {
+        changeHelpText(true);
+    }
+
+}
+
+function changeHelpText(textIsShown) {
+    var helpText = document.getElementById('help-text');
+    var helpTextToggle = document.getElementById('hide-help-text');
+
+    if(textIsShown === true) {
+        helpText.style.display = "none";
+        helpTextToggle.innerHTML = "<i class=\"fas fa-question\"></i> Hilfetext anzeigen";
+    } else {
+        helpText.style.display = "block";
+        helpTextToggle.innerHTML = "<i class=\"fas fa-question\"></i> Hilfetext verstecken";
+    }
+
+}
+
 function showSearchResults() {
     document.getElementById("searchResultOverlay").style.display = "block";
 }
@@ -36,6 +62,18 @@ function showSearchOverlay() {
        searchOverlay.style.display = "block";
        console.log(searchOverlay);
    }
+}
+
+function toggleHelpText() {
+    var textIsShown = localStorage.getItem(SHOW_HELP_TEXT);
+    if(textIsShown === null || textIsShown === "true") {
+        localStorage.setItem(SHOW_HELP_TEXT, "false");
+        checkHelpTextStatus();
+    } else {
+        localStorage.setItem(SHOW_HELP_TEXT, "true");
+        checkHelpTextStatus();
+    }
+
 }
 
 function toggleMainView(button) {

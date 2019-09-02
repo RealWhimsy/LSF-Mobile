@@ -24,4 +24,6 @@ const SEARCH_RESULT_UL = ["cd-accordion__item"];
 
 const TIMETABLE_LOCAL_KEY = "timetable";
 
+const SHOW_HELP_TEXT = "help-text";
+
 
