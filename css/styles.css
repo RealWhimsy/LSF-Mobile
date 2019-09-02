@@ -193,6 +193,16 @@
     margin-bottom: 16px;
 }
 
+.timetable-popup-button {
+    margin-top: 12px;
+    width: 70%;
+}
+
+.change-color-button {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
 body {
     background-color: #1A1A1D;
 }
