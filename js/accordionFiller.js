@@ -224,7 +224,9 @@ function showLectureDetails(lectureId) {
     containerDiv.appendChild(hideLectureDetailButton);
 
     lectureDetailOverlay.onclick = function () {
-        hideOverlay(lectureDetailOverlay)
+        if(!document.getElementById('lectureOverlay').contains(event.target)) {
+            hideOverlay(lectureDetailOverlay);
+        }
     };
     domParent.appendChild(lectureDetailOverlay);
     resetPArrays();
