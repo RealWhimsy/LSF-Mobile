@@ -217,7 +217,6 @@ function showLectureDetails(lectureId) {
     setupHideButton();
 
     var currentLectureDetails = courses[lectureId];
-    console.log((currentLectureDetails));
 
     createLectureDetailElements(currentLectureDetails);
     fillLectureDetailElements(currentLectureDetails);
@@ -258,20 +257,20 @@ function appendChildrenToOverlay(overlay) {
 // Fills the <p> elements within the overlay-div with the text that should be displayed
 function fillLectureDetailElements(details) {
     for (var i = 0; i < lectureStartTimePArray.length; i++) {
-        lectureNamePArray[i].innerHTML = "Lecture: " + details.LECTURE_NAME_KEY;
-        lectureStartTimePArray[i].innerHTML = "Start Time: " + details.LECTURE_START_TIME_KEY[i];
-        lectureEndTimePArray[i].innerHTML = "End Time: " + details.LECTURE_END_TIME_KEY[i];
-        lectureLocationPArray[i].innerHTML = "Location: " + details.LECTURE_LOCATION_KEY[i];
-        lectureDayPArray[i].innerHTML = "Weekday: " + details.LECTURE_DAY_KEY[i];
-        setupButton(i, details.LECTURE_NAME_KEY, details.LECTURE_DAY_KEY[i], details.LECTURE_START_TIME_KEY[i], details.LECTURE_END_TIME_KEY[i], details.LECTURE_LOCATION_KEY[i])
+        lectureNamePArray[i].innerHTML = '<h4 class="lecture-detail-title">' + details.LECTURE_NAME_KEY + '</h4>';
+        lectureStartTimePArray[i].innerHTML = '<p class="lecture-detail-title">Beginn: ' + details.LECTURE_START_TIME_KEY[i] + '</p>';
+        lectureEndTimePArray[i].innerHTML = '<p class="lecture-detail-title">Ende: ' + details.LECTURE_END_TIME_KEY[i] + '</p>' ;
+        lectureLocationPArray[i].innerHTML = '<p class="lecture-detail-title">Ort: ' + details.LECTURE_LOCATION_KEY[i] + '</p>';
+        lectureDayPArray[i].innerHTML = '<p class="lecture-detail-title">Tag: ' + details.LECTURE_DAY_KEY[i] + '</p>';
+        setupButton(i, details.LECTURE_NAME_KEY, details.LECTURE_DAY_KEY[i], details.LECTURE_START_TIME_KEY[i], details.LECTURE_END_TIME_KEY[i], details.LECTURE_LOCATION_KEY[i], details.LECTURE_FACULTY_KEY);
     }
 
 }
 
-function setupButton(index, name, day, startTime, endTime, location) {
+function setupButton(index, name, day, startTime, endTime, location, faculty) {
     var currentButton = lectureButtonArray[index];
     currentButton.onclick = function () {
-        addLectureToTimetable(name, day, startTime, endTime, location, currentButton);
+        addLectureToTimetable(name, day, startTime, endTime, location, currentButton, faculty);
     };
     currentButton.classList.add("timetable-button");
     currentButton.style.border = "1px solid black";

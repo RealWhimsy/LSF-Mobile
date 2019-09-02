@@ -27,10 +27,24 @@
     background-color: darkgreen;
 }
 
+.search-overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
 .lecture-overlay {
     overflow: auto;
     position: fixed; /* Sit on top of the page content */
-    display: block; /* Hidden by default */
+    display: block;
     width: 100%; /* Full width (cover the whole page) */
     height: 100%; /* Full height (cover the whole page) */
     top: 0;
@@ -74,7 +88,7 @@
 }
 
 .search-dropdown-content {
-    display: none;
+    display: block;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
@@ -117,9 +131,10 @@
 }
 
 .navButton {
-    width: 50%;
+    float: left;
+    width: 33%;
     display: inline-block;
-    border: none;
+    border: 1px solid black;
     background-color: #4C5057;
     color: #FFFFFF;
     -webkit-transition-duration: 0.3s; /* Safari */
@@ -192,6 +207,39 @@
     font-size: 12px;
     margin-bottom: 16px;
 }
+
+.timetable-popup-button {
+    margin-top: 12px;
+    width: 70%;
+}
+
+.change-color-button {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.master-bar {
+    position: fixed;
+    bottom: 3em;
+    width: 90%;
+    z-index: 5;
+}
+
+#hide-help-text {
+    display: inline-block;
+    color: #1089c2;
+    text-decoration: underline;
+}
+
+.lecture-detail-title p {
+    font-weight: bold;
+}
+
+.lecturre-detail-title h4 {
+    font-weight: bold;
+    font-size: 24px;
+}
+
 
 body {
     background-color: #1A1A1D;

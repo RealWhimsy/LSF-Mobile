@@ -32,23 +32,32 @@
 </div>
 
 <section class="description">
-	<h3>Welcome to LSF-Mobile!</h3>
-	<p>
-		Tap the folder names in the list below to expand them and browse all available courses.
-		If you find a course that you are interested in, tap it to show additional information about it. Add it to
-		your timetable by clicking the 'Add to timetable' - Button in the course description.
+	<h3>Willkommen bei LSF-Mobile!</h3>
+	<p id="help-text">
+		Tippe auf die Orndernamen in der Liste unten, um sie auszuklappen und alle verfügbaren Kurse zu durchstöbern.
+		Falls du einen Kurs findest, der dich interessiert, tippe auf den Eintrag um mehr Informationen zu erhalten.
+		Füge den Kurs deinem Stundenplan hinzu, indem du auf den 'Zum Stundenplan hinzufügen' - Button klickst.
 
-		You can switch between your timetable and the course-list by tapping the respective buttons on top of the
-		list.
-		If you want to change or delete an entry in your timetable, just tap it! A menu opens up and you can make
-		changes from there.
+		Du kannst zwischen deinem Stundenplan und dem Vorlesungsverzeichnis wechseln, indem du die Buttons am unteren
+		Bildschirmrand verwendest.
+		Falls du einen Eintrag in deinem Stundenplan ändern oder löschen möchtest, tippe den Eintrag einfach an! Es
+		öffnet sich ein Menü, in dem der Eintrag bearbeitet werden kann.
+
+		Außerdem findest du am unteren Bildschirmrand eine Suchoption, mit welcher du gezielt Kurse durchsuchen kannst.
 	</p>
+	<p id="hide-help-text" onclick="toggleHelpText()"><i class="fas fa-question"></i> Hilfetext verstecken</p>
+
 </section>
 
 <section class="container max-width-sm" id="accordion-section">
-	<div>
-		<button id="courseButton" class="navButton selected" onclick="toggleMainView(this)">Courses</button>
-		<button id="timetableButton" class="navButton" onclick="toggleMainView(this)">Timetable</button>
+	<div class="master-bar">
+		<button id="courseButton" class="navButton selected" onclick="toggleMainView(this)"><i
+				class="fas fa-graduation-cap"></i> Courses
+		</button>
+		<button id="timetableButton" class="navButton" onclick="toggleMainView(this)"><i
+				class="fas fa-calendar-alt"></i> Timetable
+		</button>
+		<button id="searchCoursesButton" class="navButton"><i class="fas fa-search-plus"></i> Search</button>
 	</div>
 	<div id="timetable" class="tiva-timetable" data-source="json" data-view="week" data-mode="day"
 	     data-start="monday"
@@ -60,11 +69,7 @@
 </section>
 
 <div class="container max-width-sm" style="padding-top: 8px">
-	<div class="dropdown">
-		<button class="dropbtn timetable-button" id="searchCoursesButton"><i class="fas fa-search-plus"
-		                                                                     style="padding-right: 4px"></i>Search
-			courses
-		</button>
+	<div class="search-overlay" id="search-overlay" onclick="hideSearchOverlay()">
 		<div id="search-dropdown" class="search-dropdown-content">
 			<div class="search-line">
 				<label for="nameInput">Course Name:</label>

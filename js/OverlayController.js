@@ -1,4 +1,30 @@
 
+checkHelpTextStatus();
+
+
+function checkHelpTextStatus() {
+    if(localStorage.getItem(SHOW_HELP_TEXT) === "false") {
+        changeHelpText(false);
+    } else {
+        changeHelpText(true);
+    }
+
+}
+
+function changeHelpText(textIsShown) {
+    var helpText = document.getElementById('help-text');
+    var helpTextToggle = document.getElementById('hide-help-text');
+
+    if(textIsShown === true) {
+        helpText.style.display = "none";
+        helpTextToggle.innerHTML = "<i class=\"fas fa-question\"></i> Hilfetext anzeigen";
+    } else {
+        helpText.style.display = "block";
+        helpTextToggle.innerHTML = "<i class=\"fas fa-question\"></i> Hilfetext verstecken";
+    }
+
+}
+
 function showSearchResults() {
     document.getElementById("searchResultOverlay").style.display = "block";
 }
@@ -15,10 +41,33 @@ function hideSearchResultsButton() {
     searchResultOverlay.parentNode.removeChild(searchResultOverlay);
 }
 
-function hideOverlay(overlay) {
-    if(!document.getElementById('lectureOverlay').contains(event.target) || event.target === hideLectureDetailButton) {
-        domParent.removeChild(overlay);
+
+function hideSearchOverlay() {
+    var overlay = document.getElementById('search-overlay');
+    if (!document.getElementsByClassName('search-dropdown-content')[0].contains(event.target) && !document.getElementById('search-dropdown').contains(event.target)) {
+        overlay.style.display = "none";
     }
+}
+
+function showSearchOverlay() {
+   var searchOverlay = document.getElementById("search-overlay");
+   if(searchOverlay.style.display === "block") {
+       hideSearchOverlay();
+   } else {
+       searchOverlay.style.display = "block";
+   }
+}
+
+function toggleHelpText() {
+    var textIsShown = localStorage.getItem(SHOW_HELP_TEXT);
+    if(textIsShown === null || textIsShown === "true") {
+        localStorage.setItem(SHOW_HELP_TEXT, "false");
+        checkHelpTextStatus();
+    } else {
+        localStorage.setItem(SHOW_HELP_TEXT, "true");
+        checkHelpTextStatus();
+    }
+
 }
 
 function toggleMainView(button) {

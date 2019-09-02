@@ -357,8 +357,12 @@
 	margin-bottom: 15px;
 }
 .timetable-popup .popup-body .timetable-desc {
-	text-align: justify;
+	text-align: center;
 	font-size: 14px;
+}
+
+.timetable-desc p {
+	margin: 4px;
 }
 .timetable-popup .popup-body .timetable-time {
 	margin-bottom: 15px;
