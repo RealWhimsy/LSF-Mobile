@@ -220,7 +220,7 @@
 
 .master-bar {
     position: fixed;
-    bottom: 2em;
+    bottom: 3em;
     width: 90%;
     z-index: 5;
 }
@@ -229,6 +229,15 @@
     display: inline-block;
     color: #1089c2;
     text-decoration: underline;
+}
+
+.lecture-detail-title p {
+    font-weight: bold;
+}
+
+.lecturre-detail-title h4 {
+    font-weight: bold;
+    font-size: 24px;
 }
 
 
