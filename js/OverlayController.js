@@ -21,6 +21,23 @@ function hideOverlay(overlay) {
     }
 }
 
+function hideSearchOverlay() {
+    var overlay = document.getElementById('search-overlay');
+    if (!document.getElementsByClassName('search-dropdown-content')[0].contains(event.target) && !document.getElementById('search-dropdown').contains(event.target)) {
+        overlay.style.display = "none";
+    }
+}
+
+function showSearchOverlay() {
+   var searchOverlay = document.getElementById("search-overlay");
+   if(searchOverlay.style.display === "block") {
+       hideSearchOverlay();
+   } else {
+       searchOverlay.style.display = "block";
+       console.log(searchOverlay);
+   }
+}
+
 function toggleMainView(button) {
     // If the already selected button is clicked again, the function should not toggle anything ==> return
     if(button.classList.contains('selected')){
