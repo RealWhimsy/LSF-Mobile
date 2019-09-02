@@ -59,10 +59,13 @@ function convertDay(day) {
 }
 
 function deleteEntry(content) {
-    for (var i in timetableMaster.items) {
-        if (timetableMaster.items[i].name === content.id) {
-            timetableMaster.items.splice(i, 1);
-            onTimetableChanged();
+    var confirmation = confirm("Diesen Eintrag wirklich aus dem Stundenplan löschen?");
+    if(confirmation) {
+        for (var i in timetableMaster.items) {
+            if (timetableMaster.items[i].name === content.id) {
+                timetableMaster.items.splice(i, 1);
+                onTimetableChanged();
+            }
         }
     }
 }
