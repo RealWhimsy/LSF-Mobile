@@ -129,7 +129,6 @@ function mergeSearches() {
 }
 
 function deleteNonMatchingLectures(index, params) {
-    console.log(index);
     if (params[0] === true) {
 
         for (var i in foundLectures) {
@@ -252,7 +251,6 @@ function searchByStartTime() {
 
         }
     }
-    console.log(foundLectures);
 }
 
 function searchByModules() {

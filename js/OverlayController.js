@@ -41,11 +41,6 @@ function hideSearchResultsButton() {
     searchResultOverlay.parentNode.removeChild(searchResultOverlay);
 }
 
-function hideOverlay(overlay) {
-    if(!document.getElementById('lectureOverlay').contains(event.target) || event.target === hideLectureDetailButton) {
-        domParent.removeChild(overlay);
-    }
-}
 
 function hideSearchOverlay() {
     var overlay = document.getElementById('search-overlay');
@@ -60,7 +55,6 @@ function showSearchOverlay() {
        hideSearchOverlay();
    } else {
        searchOverlay.style.display = "block";
-       console.log(searchOverlay);
    }
 }
 
