@@ -72,7 +72,7 @@ function showResults() {
 
 function createBackButton() {
     var backButton = document.createElement('button');
-    backButton.innerHTML = "Hide Search Results";
+    backButton.innerHTML = '<i class="far fa-times-circle"></i> Suchergebnisse ausblenden';
     backButton.onclick = function () {
         hideSearchResultsButton()
     };

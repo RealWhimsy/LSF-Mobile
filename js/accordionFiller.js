@@ -196,7 +196,7 @@ function setupHideButton() {
     hideLectureDetailButton.onclick = function () {
         hideOverlay(lectureDetailOverlay);
     };
-    hideLectureDetailButton.innerText = "Hide Details";
+    hideLectureDetailButton.innerHTML = '<i class="far fa-times-circle"></i> Details ausblenden';
 }
 
 
@@ -276,7 +276,7 @@ function setupButton(index, name, day, startTime, endTime, location, faculty) {
     };
     currentButton.classList.add("timetable-button");
     currentButton.style.border = "1px solid black";
-    currentButton.innerHTML = "Add to timetable";
+    currentButton.innerHTML = '<i class="far fa-calendar-alt"></i> Zum Stundenplan hinzufügen';
 }
 
 
