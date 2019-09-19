@@ -221,9 +221,9 @@
 .master-bar {
     position: fixed;
     bottom: 3em;
-    width: 90%;
     z-index: 5;
 }
+
 
 #hide-help-text {
     display: inline-block;

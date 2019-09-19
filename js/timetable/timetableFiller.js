@@ -31,7 +31,7 @@ function addLectureToTimetable(name, day, startTime, endTime, location, button, 
         "description": "Ort: " + location + "<br>" + "Fakultät: " + faculty
     });
     button.classList.add('timetable-added');
-    button.innerText = "Successfully added";
+    button.innerText = "Erfolgreich hinzugefügt";
     setupIcon();
     button.appendChild(addedIcon);
     onTimetableChanged();

@@ -147,7 +147,10 @@ function deleteNonMatchingLectures(index, params) {
         for (var t in foundLectures) {
             for (var d in foundLectures[t].LECTURE_MODULE_SEARCH_STRING) {
                 if (foundLectures[t].LECTURE_MODULE_SEARCH_STRING[d] !== undefined) {
-                    if (foundLectures[t].LECTURE_MODULE_SEARCH_STRING[d].toLowerCase().trim().includes(moduleString)) {
+                    var searchString = foundLectures[t].LECTURE_MODULE_SEARCH_STRING[d];
+                    searchString = searchString.toLowerCase().trim();
+                    searchString = searchString.replace(/-/g, '');
+                    if (searchString.includes(moduleString)) {
                         contained = true;
                     }
                 }
@@ -181,16 +184,12 @@ function deleteNonMatchingLectures(index, params) {
         for (var k in foundLectures) {
             if (foundLectures[k].LECTURE_END_TIME_KEY !== undefined) {
                 for (var end in foundLectures[k].LECTURE_END_TIME_KEY) {
-                    console.log(foundLectures[k]);
-                    console.log(foundLectures[k].LECTURE_END_TIME_KEY[end]);
                     if (foundLectures[k].LECTURE_END_TIME_KEY[end] === endTime) {
-                        console.log("it contains");
                         contained = true;
                     }
                 }
             }
             if (contained === false) {
-                console.log("split because end time");
                 foundLectures.splice(k, 1);
             }
         }
@@ -259,7 +258,10 @@ function searchByModules() {
         if (moduleString != null && moduleString !== "") {
             for (var k in currentLecture.LECTURE_MODULE_SEARCH_STRING) {
                 if (currentLecture.LECTURE_MODULE_SEARCH_STRING[k] !== undefined) {
-                    if (currentLecture.LECTURE_MODULE_SEARCH_STRING[k].toLowerCase().trim().includes(moduleString)) {
+                    var currentModuleString = currentLecture.LECTURE_MODULE_SEARCH_STRING[k];
+                    currentModuleString = currentModuleString.toLowerCase().trim();
+                    currentModuleString = currentModuleString.replace(/-/g, '');
+                    if (currentModuleString.includes(moduleString)) {
                         foundLectures.push(currentLecture);
                     }
                 }
