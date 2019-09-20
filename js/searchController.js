@@ -93,7 +93,7 @@ function createEntries(currentLecture) {
     lecA.setAttribute("href", "#0");
 
     var lecSpan = document.createElement('span');
-    lecSpan.innerHTML = currentLecture.LECTURE_NAME_KEY;
+    lecSpan.innerHTML = '<i class="fas fa-graduation-cap"></i>' + ' ' + currentLecture.LECTURE_NAME_KEY;
     lecSpan.onclick = function () {
         showLectureDetails(currentLecture.LECTURE_ID_KEY);
     };
