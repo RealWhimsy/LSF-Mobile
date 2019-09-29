@@ -1,4 +1,4 @@
-# LSF-App
+# LSF-Mobile
 A responsive website serving as a prototype for an electronic course catalaogue for students of the University of Regensburg. This project was created during the course of Lukas Jackermeier's bachelor thesis "Design and Implementation of a Mobile Friendly Course Catalogue for Students of the University of Regensburg". [LSF-Mobile can be visited here](https://lsf-app.firebaseapp.com). The website is intended for use on mobile devices, but of course it can be still accessed and used from desktop browsers as well.
 
 
