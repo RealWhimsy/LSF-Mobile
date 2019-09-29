@@ -57,7 +57,8 @@ function convertDay(day) {
             return "monday";
     }
 }
-
+// Deletes an entry from the timetable after the confirmation message has been answered affirmitavely
+// Deletes the object from the timetable array according to ID, then notifies the listener that the timetable as changed
 function deleteEntry(content) {
     var confirmation = confirm("Diesen Eintrag wirklich aus dem Stundenplan löschen?");
     if(confirmation) {

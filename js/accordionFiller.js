@@ -41,6 +41,10 @@ function getLectureId(faculty, currentModule, lesserModule, lectureName) {
     return -1;
 }
 
+// Creates all needed HTML elements for displaying a lecture entry in the course catalogue
+// Sorts it in the appropriate folder by checking the previous folder names
+// Similar methods have been created for folders from higher levels, however each row requires different HTML elements to be created
+// Making an extra function for each was considered easier than having all in one function and switch-ing over the variables
 function createLectureEntry(faculty, currentModule, lesserModule, lectureName) {
     var lecUl = document.createElement('ul');
     addStylesToElement(lecUl, LECTURE_LAYER_UL_CLASS_LIST);

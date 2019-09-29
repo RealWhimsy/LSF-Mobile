@@ -1,7 +1,5 @@
 var database = firebase.database();
 var dbRef = database.ref();
-var lectureList = [];
-var currentLectureId = 0;
 
 var faculty, currentModule, lesserModule, lectureName;
 
@@ -9,10 +7,9 @@ var courses;
 
 getCoursesFromDb();
 
-// This function gets all entries from the top-level of the database.
-// It starts cascading downwards towards the lower level for each entry. The downwards cascade continues in the other function for lower levels
-// These functions get the names of their respective level (which are later displayed as 'folder names') until the lowest level is reached (a single lecture entry)
 
+// This function gets all entries from the database
+// For each found dataset, an entry in the course drawer will be created by calling the function createAccordionEntry in accordionFiller.js
 function getCoursesFromDb() {
     dbRef.once('value', function (snapshot) {
         courses = snapshot.val();
